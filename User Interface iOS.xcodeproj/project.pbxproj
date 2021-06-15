@@ -99,13 +99,11 @@
 		0697CEB02678EF370013BCE7 /* User Interface iOS */ = {
 			isa = PBXGroup;
 			children = (
-				0697CEB12678EF370013BCE7 /* AppDelegate.swift */,
 				0697CEB32678EF370013BCE7 /* SceneDelegate.swift */,
 				0697CEB52678EF370013BCE7 /* ViewController.swift */,
 				0697CEB72678EF370013BCE7 /* Main.storyboard */,
-				0697CEBA2678EF370013BCE7 /* Assets.xcassets */,
-				0697CEBC2678EF370013BCE7 /* LaunchScreen.storyboard */,
 				0697CEBF2678EF370013BCE7 /* Info.plist */,
+				0697CEE12678EF560013BCE7 /* Supporting Files */,
 			);
 			path = "User Interface iOS";
 			sourceTree = "<group>";
@@ -126,6 +124,16 @@
 				0697CED52678EF380013BCE7 /* Info.plist */,
 			);
 			path = "User Interface iOSUITests";
+			sourceTree = "<group>";
+		};
+		0697CEE12678EF560013BCE7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0697CEB12678EF370013BCE7 /* AppDelegate.swift */,
+				0697CEBA2678EF370013BCE7 /* Assets.xcassets */,
+				0697CEBC2678EF370013BCE7 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
