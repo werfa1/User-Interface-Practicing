@@ -24,29 +24,30 @@ class LoginViewController: UIViewController {
     
     //MARK: - Functions
     
+    /// Checks if the input infor matches the loginInfo
     private func displayLoginResult(infoIsCorrect check: Bool) {
-       
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {[weak self] in
-                guard let self = self else { return }
-                self.spinningAnimator.stopAnimating()
-                self.spinningAnimator.alpha = 0
-                self.loginLabel.isHidden = false
-                self.loginTextField.isHidden = false
-                self.passwordLabel.isHidden = false
-                self.passwordTextField.isHidden = false
-                self.correctLoginLabel.alpha = 1.0
-                if check {
-                    self.correctLoginLabel.text = "Correct!"
-                    self.correctLoginLabel.textColor = .green
-                } else {
-                    self.correctLoginLabel.text = "Wrong login/password"
-                    self.correctLoginLabel.textColor = .red
-                }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {[weak self] in
+            guard let self = self else { return }
+            self.spinningAnimator.stopAnimating()
+            self.spinningAnimator.alpha = 0
+            self.loginLabel.isHidden = false
+            self.loginTextField.isHidden = false
+            self.passwordLabel.isHidden = false
+            self.passwordTextField.isHidden = false
+            self.correctLoginLabel.alpha = 1.0
+            if check {
+                self.correctLoginLabel.text = "Correct!"
+                self.correctLoginLabel.textColor = .green
+            } else {
+                self.correctLoginLabel.text = "Wrong login/password"
+                self.correctLoginLabel.textColor = .red
             }
+        }
     }
     
     @objc
     private func handleLogin(_ sender: UITapGestureRecognizer) {
+        correctLoginLabel.alpha = 0.0
         spinningAnimator.alpha = 1.0
         spinningAnimator.center = loginView.center
         loginView.addSubview(spinningAnimator)
@@ -68,7 +69,8 @@ class LoginViewController: UIViewController {
         
         //Login label
         loginLabel.text = "Login"
-        loginLabel.textAlignment = .center
+        loginLabel.textAlignment = .left
+        loginLabel.sizeToFit()
         
         loginView.addSubview(loginLabel)
         
@@ -78,9 +80,11 @@ class LoginViewController: UIViewController {
             loginLabel.centerYAnchor.constraint(equalTo: loginView.centerYAnchor)
         ])
         
+        
         //Password label
         passwordLabel.text = "Password"
-        passwordLabel.textAlignment = .center
+        passwordLabel.textAlignment = .left
+        passwordLabel.sizeToFit()
         
         loginView.addSubview(passwordLabel)
         
@@ -89,6 +93,9 @@ class LoginViewController: UIViewController {
             passwordLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: 10.0),
             passwordLabel.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 20.0)
         ])
+        
+        let widthConstraintForLabel = loginTextField.widthAnchor.constraint(equalTo: loginView.widthAnchor, multiplier: 0.5)
+        widthConstraintForLabel.priority = .defaultHigh
         
         //TextField to enter login
         loginTextField.delegate = self
@@ -105,10 +112,13 @@ class LoginViewController: UIViewController {
         
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            loginTextField.leadingAnchor.constraint(equalTo: loginLabel.trailingAnchor, constant: 20.0),
-            loginTextField.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
-            loginTextField.centerYAnchor.constraint(equalTo: loginView.centerYAnchor)
+            loginTextField.centerYAnchor.constraint(equalTo: loginView.centerYAnchor),
+            loginTextField.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -20.0),
+            
+            loginTextField.leadingAnchor.constraint(equalTo: loginLabel.trailingAnchor, constant: 52.5)
         ])
+        
+        
         
         //TextField to enter password
         passwordTextField.delegate = self
@@ -140,12 +150,9 @@ class LoginViewController: UIViewController {
         loginView.frame.size = CGSize(width: view.frame.size.width / 2, height: view.frame.size.height / 4)
         loginView.center = view.center
         loginView.backgroundColor = .white
-        loginView.layer.cornerRadius = 5.0
-        
         view.addSubview(loginView)
         
         loginView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             loginView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             loginView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -160,7 +167,6 @@ class LoginViewController: UIViewController {
         titleLabel.text = "Login to access your account"
         titleLabel.textAlignment = .center
         titleLabel.sizeToFit()
-        
         loginView.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -173,14 +179,12 @@ class LoginViewController: UIViewController {
         //Label whick checks whether the login info is correct
         correctLoginLabel.alpha = 0.0
         correctLoginLabel.textAlignment = .center
-        correctLoginLabel.text = "test"
         correctLoginLabel.sizeToFit()
-        
         loginView.addSubview(correctLoginLabel)
         
         correctLoginLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            correctLoginLabel.bottomAnchor.constraint(equalTo: loginTextField.topAnchor, constant: -20.0),
+            correctLoginLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20.0),
             correctLoginLabel.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
         ])
         
@@ -188,7 +192,6 @@ class LoginViewController: UIViewController {
         loginButton.setTitle("Login", for: .normal)
         loginButton.backgroundColor = .systemBlue
         loginButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLogin)))
-        
         loginView.addSubview(loginButton)
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
