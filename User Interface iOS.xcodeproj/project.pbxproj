@@ -10,6 +10,8 @@
 		0663498F267B7D8A004B0812 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663498E267B7D8A004B0812 /* TabBarViewController.swift */; };
 		06634991267B8AE1004B0812 /* FriendsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06634990267B8AE1004B0812 /* FriendsTableVC.swift */; };
 		06634993267B8D07004B0812 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06634992267B8D07004B0812 /* FriendCell.swift */; };
+		06634996267B8FEA004B0812 /* PhotoCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06634995267B8FEA004B0812 /* PhotoCollectionVC.swift */; };
+		06634998267B9083004B0812 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06634997267B9083004B0812 /* PhotoCell.swift */; };
 		0697CEB22678EF370013BCE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEB12678EF370013BCE7 /* AppDelegate.swift */; };
 		0697CEB42678EF370013BCE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEB32678EF370013BCE7 /* SceneDelegate.swift */; };
 		0697CEB62678EF370013BCE7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEB52678EF370013BCE7 /* LoginViewController.swift */; };
@@ -40,6 +42,8 @@
 		0663498E267B7D8A004B0812 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		06634990267B8AE1004B0812 /* FriendsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableVC.swift; sourceTree = "<group>"; };
 		06634992267B8D07004B0812 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		06634995267B8FEA004B0812 /* PhotoCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionVC.swift; sourceTree = "<group>"; };
+		06634997267B9083004B0812 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		0697CEAE2678EF370013BCE7 /* User Interface iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "User Interface iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0697CEB12678EF370013BCE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0697CEB32678EF370013BCE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 			children = (
 				06634990267B8AE1004B0812 /* FriendsTableVC.swift */,
 				06634992267B8D07004B0812 /* FriendCell.swift */,
+				06634995267B8FEA004B0812 /* PhotoCollectionVC.swift */,
+				06634997267B9083004B0812 /* PhotoCell.swift */,
 			);
 			path = "Friends Section";
 			sourceTree = "<group>";
@@ -112,8 +118,8 @@
 		0697CEB02678EF370013BCE7 /* User Interface iOS */ = {
 			isa = PBXGroup;
 			children = (
-				0697CEB32678EF370013BCE7 /* SceneDelegate.swift */,
 				06634994267B8F01004B0812 /* Friends Section */,
+				0697CEB32678EF370013BCE7 /* SceneDelegate.swift */,
 				0697CEB52678EF370013BCE7 /* LoginViewController.swift */,
 				0663498E267B7D8A004B0812 /* TabBarViewController.swift */,
 				0697CEBF2678EF370013BCE7 /* Info.plist */,
@@ -279,9 +285,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06634996267B8FEA004B0812 /* PhotoCollectionVC.swift in Sources */,
 				0697CEB62678EF370013BCE7 /* LoginViewController.swift in Sources */,
 				0663498F267B7D8A004B0812 /* TabBarViewController.swift in Sources */,
 				0697CEB22678EF370013BCE7 /* AppDelegate.swift in Sources */,
+				06634998267B9083004B0812 /* PhotoCell.swift in Sources */,
 				0697CEB42678EF370013BCE7 /* SceneDelegate.swift in Sources */,
 				06634991267B8AE1004B0812 /* FriendsTableVC.swift in Sources */,
 				06634993267B8D07004B0812 /* FriendCell.swift in Sources */,
