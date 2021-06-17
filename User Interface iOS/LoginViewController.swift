@@ -36,8 +36,10 @@ class LoginViewController: UIViewController {
             self.passwordTextField.isHidden = false
             self.correctLoginLabel.alpha = 1.0
             if check {
-                self.correctLoginLabel.text = "Correct!"
-                self.correctLoginLabel.textColor = .green
+                let tabBarVc = TabBarViewController()
+                self.present(tabBarVc, animated: true) {
+                    
+                }
             } else {
                 self.correctLoginLabel.text = "Wrong login/password"
                 self.correctLoginLabel.textColor = .red
