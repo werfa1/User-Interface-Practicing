@@ -71,7 +71,6 @@ class LoginViewController: UIViewController {
         loginLabel.text = "Login"
         loginLabel.textAlignment = .left
         loginLabel.sizeToFit()
-        
         loginView.addSubview(loginLabel)
         
         loginLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +84,6 @@ class LoginViewController: UIViewController {
         passwordLabel.text = "Password"
         passwordLabel.textAlignment = .left
         passwordLabel.sizeToFit()
-        
         loginView.addSubview(passwordLabel)
         
         passwordLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -93,9 +91,6 @@ class LoginViewController: UIViewController {
             passwordLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: 10.0),
             passwordLabel.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 20.0)
         ])
-        
-        let widthConstraintForLabel = loginTextField.widthAnchor.constraint(equalTo: loginView.widthAnchor, multiplier: 0.5)
-        widthConstraintForLabel.priority = .defaultHigh
         
         //TextField to enter login
         loginTextField.delegate = self
@@ -107,17 +102,15 @@ class LoginViewController: UIViewController {
         loginTextField.returnKeyType = .done
         loginTextField.autocorrectionType = .no
         loginTextField.sizeToFit()
-         
         loginView.addSubview(loginTextField)
         
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             loginTextField.centerYAnchor.constraint(equalTo: loginView.centerYAnchor),
             loginTextField.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -20.0),
-            
             loginTextField.leadingAnchor.constraint(equalTo: loginLabel.trailingAnchor, constant: 52.5)
+//            loginTextField.widthAnchor.constraint(equalTo: loginView.widthAnchor, multiplier: 0.5)
         ])
-        
         
         
         //TextField to enter password
@@ -130,7 +123,6 @@ class LoginViewController: UIViewController {
         passwordTextField.returnKeyType = .done
         passwordTextField.autocorrectionType = .no
         passwordTextField.sizeToFit()
-         
         loginView.addSubview(passwordTextField)
         
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -138,6 +130,7 @@ class LoginViewController: UIViewController {
             passwordTextField.leadingAnchor.constraint(equalTo: passwordLabel.trailingAnchor, constant: 20.0),
             passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 20.0),
             passwordTextField.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -20.0)
+//            passwordTextField.widthAnchor.constraint(equalTo: loginView.widthAnchor, multiplier: 0.5)
         ])
     }
 

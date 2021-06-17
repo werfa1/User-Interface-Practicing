@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0663498F267B7D8A004B0812 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663498E267B7D8A004B0812 /* TabBarViewController.swift */; };
 		0697CEB22678EF370013BCE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEB12678EF370013BCE7 /* AppDelegate.swift */; };
 		0697CEB42678EF370013BCE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEB32678EF370013BCE7 /* SceneDelegate.swift */; };
 		0697CEB62678EF370013BCE7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEB52678EF370013BCE7 /* LoginViewController.swift */; };
-		0697CEB92678EF370013BCE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0697CEB72678EF370013BCE7 /* Main.storyboard */; };
 		0697CEBB2678EF370013BCE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0697CEBA2678EF370013BCE7 /* Assets.xcassets */; };
 		0697CEBE2678EF370013BCE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0697CEBC2678EF370013BCE7 /* LaunchScreen.storyboard */; };
 		0697CEC92678EF380013BCE7 /* User_Interface_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEC82678EF380013BCE7 /* User_Interface_iOSTests.swift */; };
@@ -35,11 +35,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0663498E267B7D8A004B0812 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		0697CEAE2678EF370013BCE7 /* User Interface iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "User Interface iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0697CEB12678EF370013BCE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0697CEB32678EF370013BCE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0697CEB52678EF370013BCE7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		0697CEB82678EF370013BCE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0697CEBA2678EF370013BCE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0697CEBD2678EF370013BCE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0697CEBF2678EF370013BCE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			children = (
 				0697CEB32678EF370013BCE7 /* SceneDelegate.swift */,
 				0697CEB52678EF370013BCE7 /* LoginViewController.swift */,
-				0697CEB72678EF370013BCE7 /* Main.storyboard */,
+				0663498E267B7D8A004B0812 /* TabBarViewController.swift */,
 				0697CEBF2678EF370013BCE7 /* Info.plist */,
 				0697CEE12678EF560013BCE7 /* Supporting Files */,
 			);
@@ -241,7 +241,6 @@
 			files = (
 				0697CEBE2678EF370013BCE7 /* LaunchScreen.storyboard in Resources */,
 				0697CEBB2678EF370013BCE7 /* Assets.xcassets in Resources */,
-				0697CEB92678EF370013BCE7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0697CEB62678EF370013BCE7 /* LoginViewController.swift in Sources */,
+				0663498F267B7D8A004B0812 /* TabBarViewController.swift in Sources */,
 				0697CEB22678EF370013BCE7 /* AppDelegate.swift in Sources */,
 				0697CEB42678EF370013BCE7 /* SceneDelegate.swift in Sources */,
 			);
@@ -304,14 +304,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0697CEB72678EF370013BCE7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0697CEB82678EF370013BCE7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0697CEBC2678EF370013BCE7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
