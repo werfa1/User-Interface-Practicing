@@ -36,7 +36,7 @@ extension FriendsTableVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier, for: indexPath)
-        cell.textLabel?.text = "Hello binch"
+        cell.textLabel?.text = "'suh dude"
 
         return cell
     }

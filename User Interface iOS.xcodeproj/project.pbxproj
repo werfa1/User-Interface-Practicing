@@ -12,6 +12,8 @@
 		06634993267B8D07004B0812 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06634992267B8D07004B0812 /* FriendCell.swift */; };
 		06634996267B8FEA004B0812 /* PhotoCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06634995267B8FEA004B0812 /* PhotoCollectionVC.swift */; };
 		06634998267B9083004B0812 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06634997267B9083004B0812 /* PhotoCell.swift */; };
+		066349A0267B9509004B0812 /* CommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663499F267B9509004B0812 /* CommunityCell.swift */; };
+		066349A2267B9524004B0812 /* CommunityTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066349A1267B9524004B0812 /* CommunityTableVC.swift */; };
 		0697CEB22678EF370013BCE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEB12678EF370013BCE7 /* AppDelegate.swift */; };
 		0697CEB42678EF370013BCE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEB32678EF370013BCE7 /* SceneDelegate.swift */; };
 		0697CEB62678EF370013BCE7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEB52678EF370013BCE7 /* LoginViewController.swift */; };
@@ -44,6 +46,8 @@
 		06634992267B8D07004B0812 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		06634995267B8FEA004B0812 /* PhotoCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionVC.swift; sourceTree = "<group>"; };
 		06634997267B9083004B0812 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		0663499F267B9509004B0812 /* CommunityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCell.swift; sourceTree = "<group>"; };
+		066349A1267B9524004B0812 /* CommunityTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTableVC.swift; sourceTree = "<group>"; };
 		0697CEAE2678EF370013BCE7 /* User Interface iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "User Interface iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0697CEB12678EF370013BCE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0697CEB32678EF370013BCE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +99,15 @@
 			path = "Friends Section";
 			sourceTree = "<group>";
 		};
+		0663499E267B94EC004B0812 /* Community Section */ = {
+			isa = PBXGroup;
+			children = (
+				0663499F267B9509004B0812 /* CommunityCell.swift */,
+				066349A1267B9524004B0812 /* CommunityTableVC.swift */,
+			);
+			path = "Community Section";
+			sourceTree = "<group>";
+		};
 		0697CEA52678EF370013BCE7 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +131,7 @@
 		0697CEB02678EF370013BCE7 /* User Interface iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0663499E267B94EC004B0812 /* Community Section */,
 				06634994267B8F01004B0812 /* Friends Section */,
 				0697CEB32678EF370013BCE7 /* SceneDelegate.swift */,
 				0697CEB52678EF370013BCE7 /* LoginViewController.swift */,
@@ -287,12 +301,14 @@
 			files = (
 				06634996267B8FEA004B0812 /* PhotoCollectionVC.swift in Sources */,
 				0697CEB62678EF370013BCE7 /* LoginViewController.swift in Sources */,
+				066349A0267B9509004B0812 /* CommunityCell.swift in Sources */,
 				0663498F267B7D8A004B0812 /* TabBarViewController.swift in Sources */,
 				0697CEB22678EF370013BCE7 /* AppDelegate.swift in Sources */,
 				06634998267B9083004B0812 /* PhotoCell.swift in Sources */,
 				0697CEB42678EF370013BCE7 /* SceneDelegate.swift in Sources */,
 				06634991267B8AE1004B0812 /* FriendsTableVC.swift in Sources */,
 				06634993267B8D07004B0812 /* FriendCell.swift in Sources */,
+				066349A2267B9524004B0812 /* CommunityTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
