@@ -19,6 +19,8 @@ class PhotoCollectionVC: UICollectionViewController {
         self.collectionView!.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.identifier)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        self.collectionView.backgroundColor = .systemTeal
+        
     }
     
     
@@ -69,7 +71,7 @@ extension PhotoCollectionVC {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
         //cell.imageView.image = UIImage(systemName: "square.and.arrow.up")
-        cell.backgroundColor = .green
+        cell.backgroundColor = .systemPink
         return cell
     }
 }
