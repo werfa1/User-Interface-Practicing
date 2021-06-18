@@ -25,13 +25,7 @@ class TabBarViewController: UITabBarController {
     /// Creates a navigation controller with a FriendTableView
     private func createFriedsNC() -> UINavigationController {
         let friendsTableVC = FriendsTableVC()
-        //friendsTableVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
-//        friendsTableVC.tabBarItem = UITabBarItem(
-//        friendsTableVC.tabBarItem.titl
-        
         friendsTableVC.title = "Friends"
-        //friendsTableVC.tabBarItem.image = UIImage(named: "person.2.fill")
-        
         return UINavigationController(rootViewController: friendsTableVC)
     }
     
@@ -39,8 +33,6 @@ class TabBarViewController: UITabBarController {
     private func createCommunityNC() -> UINavigationController {
         let communityTableVC = CommunityTableVC()
         communityTableVC.title = "Communities"
-        //communityTableVC.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 1)
-        
         return UINavigationController(rootViewController: communityTableVC)
     }
 }
