@@ -13,20 +13,23 @@ class CommunityTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.register(CommunityCell.self, forCellReuseIdentifier: CommunityCell.identifier)
     }
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let barButton = UIButton(type: .custom)
+        barButton.setTitle("Search", for: .normal)
+        barButton.setTitleColor(.systemBlue, for: .normal)
+        barButton.addTarget(self, action: #selector(handleBarButtonTap(_:)), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: barButton)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    @objc
+    func handleBarButtonTap (_ sender: UIBarButtonItem) {
+        let globalSearchVC = GlobalSearchCommunityVC()
+        navigationController?.pushViewController(globalSearchVC, animated: true)
+    
     }
-    */
 
 }
 
@@ -45,11 +48,6 @@ extension CommunityTableVC {
         let cell = tableView.dequeueReusableCell(withIdentifier: CommunityCell.identifier, for: indexPath) as! CommunityCell
         cell.textLabel?.text = "'sup bitch"
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let globalSearchVC = GlobalSearchCommunityVC()
-        navigationController?.pushViewController(globalSearchVC, animated: true)
     }
   
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
