@@ -21,6 +21,8 @@
 		0697CEBE2678EF370013BCE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0697CEBC2678EF370013BCE7 /* LaunchScreen.storyboard */; };
 		0697CEC92678EF380013BCE7 /* User_Interface_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEC82678EF380013BCE7 /* User_Interface_iOSTests.swift */; };
 		0697CED42678EF380013BCE7 /* User_Interface_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CED32678EF380013BCE7 /* User_Interface_iOSUITests.swift */; };
+		06CEB704267CADF6003F5949 /* GlobalSearchCommunityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CEB703267CADF6003F5949 /* GlobalSearchCommunityVC.swift */; };
+		06CEB706267CAE7E003F5949 /* GlobalSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CEB705267CAE7E003F5949 /* GlobalSearchCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		0697CECF2678EF380013BCE7 /* User Interface iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "User Interface iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0697CED32678EF380013BCE7 /* User_Interface_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User_Interface_iOSUITests.swift; sourceTree = "<group>"; };
 		0697CED52678EF380013BCE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06CEB703267CADF6003F5949 /* GlobalSearchCommunityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchCommunityVC.swift; sourceTree = "<group>"; };
+		06CEB705267CAE7E003F5949 /* GlobalSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 			children = (
 				0663499F267B9509004B0812 /* CommunityCell.swift */,
 				066349A1267B9524004B0812 /* CommunityTableVC.swift */,
+				06CEB703267CADF6003F5949 /* GlobalSearchCommunityVC.swift */,
+				06CEB705267CAE7E003F5949 /* GlobalSearchCell.swift */,
 			);
 			path = "Community Section";
 			sourceTree = "<group>";
@@ -303,10 +309,12 @@
 				0697CEB62678EF370013BCE7 /* LoginViewController.swift in Sources */,
 				066349A0267B9509004B0812 /* CommunityCell.swift in Sources */,
 				0663498F267B7D8A004B0812 /* TabBarViewController.swift in Sources */,
+				06CEB706267CAE7E003F5949 /* GlobalSearchCell.swift in Sources */,
 				0697CEB22678EF370013BCE7 /* AppDelegate.swift in Sources */,
 				06634998267B9083004B0812 /* PhotoCell.swift in Sources */,
 				0697CEB42678EF370013BCE7 /* SceneDelegate.swift in Sources */,
 				06634991267B8AE1004B0812 /* FriendsTableVC.swift in Sources */,
+				06CEB704267CADF6003F5949 /* GlobalSearchCommunityVC.swift in Sources */,
 				06634993267B8D07004B0812 /* FriendCell.swift in Sources */,
 				066349A2267B9524004B0812 /* CommunityTableVC.swift in Sources */,
 			);
