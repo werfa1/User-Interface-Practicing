@@ -19,14 +19,14 @@ class LoginViewController: UIViewController {
     private var passwordTextField = UITextField()
     private var correctLoginLabel = UILabel()
     private var loginButton = UIButton()
-    private var loginInfo = ["test":"1"]
+    private var loginInfo = ["":""]
     let spinningAnimator = UIActivityIndicatorView()
     
     //MARK: - Functions
     
     /// Checks if the input infor matches the loginInfo
     private func displayLoginResult(infoIsCorrect check: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {[weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {[weak self] in
             guard let self = self else { return }
             self.spinningAnimator.stopAnimating()
             self.spinningAnimator.alpha = 0

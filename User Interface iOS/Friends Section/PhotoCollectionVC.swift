@@ -17,10 +17,6 @@ class PhotoCollectionVC: UICollectionViewController {
         super.viewDidLoad()
         // Register cell classes
         self.collectionView!.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.identifier)
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 5, right: 8)
-        self.collectionView.collectionViewLayout = layout
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
     }
@@ -67,12 +63,13 @@ extension PhotoCollectionVC {
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
-        cell.imageView.image = UIImage(systemName: "square.and.arrow.up")
+        //cell.imageView.image = UIImage(systemName: "square.and.arrow.up")
+        cell.backgroundColor = .green
         return cell
     }
 }
