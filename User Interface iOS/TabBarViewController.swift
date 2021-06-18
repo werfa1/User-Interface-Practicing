@@ -32,7 +32,7 @@ class TabBarViewController: UITabBarController {
     /// Creates a navigation controller with a CommunityTableView
     private func createCommunityNC() -> UINavigationController {
         let communityTableVC = CommunityTableVC()
-        communityTableVC.title = "Communities"
+        communityTableVC.title = "Communities" 
         return UINavigationController(rootViewController: communityTableVC)
     }
 }
