@@ -24,6 +24,25 @@ class LoginViewController: UIViewController {
     
     //MARK: - Functions
     
+    @objc
+    private func handleLogin(_ sender: UITapGestureRecognizer) {
+        correctLoginLabel.alpha = 0.0
+        spinningAnimator.alpha = 1.0
+        spinningAnimator.center = loginView.center
+        loginView.addSubview(spinningAnimator)
+        spinningAnimator.style = .large
+        spinningAnimator.color = .blue
+        loginLabel.isHidden = true
+        loginTextField.isHidden = true
+        passwordLabel.isHidden = true
+        passwordTextField.isHidden = true
+        spinningAnimator.startAnimating()
+        
+        let inputInforDictionary = ["\(loginTextField.text ??  "")":"\(passwordTextField.text ?? "")"]
+        
+        displayLoginResult(infoIsCorrect: NSDictionary(dictionary: loginInfo).isEqual(to: inputInforDictionary))
+    }
+    
     /// Checks if the input infor matches the loginInfo
     private func displayLoginResult(infoIsCorrect check: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {[weak self] in
@@ -44,25 +63,6 @@ class LoginViewController: UIViewController {
                 self.correctLoginLabel.textColor = .red
             }
         }
-    }
-    
-    @objc
-    private func handleLogin(_ sender: UITapGestureRecognizer) {
-        correctLoginLabel.alpha = 0.0
-        spinningAnimator.alpha = 1.0
-        spinningAnimator.center = loginView.center
-        loginView.addSubview(spinningAnimator)
-        spinningAnimator.style = .large
-        spinningAnimator.color = .blue
-        loginLabel.isHidden = true
-        loginTextField.isHidden = true
-        passwordLabel.isHidden = true
-        passwordTextField.isHidden = true
-        spinningAnimator.startAnimating()
-        
-        let inputInforDictionary = ["\(loginTextField.text ??  "")":"\(passwordTextField.text ?? "")"]
-        
-        displayLoginResult(infoIsCorrect: NSDictionary(dictionary: loginInfo).isEqual(to: inputInforDictionary))
     }
     
     /// Configures the section which includes login and password sections + their labels
@@ -134,12 +134,52 @@ class LoginViewController: UIViewController {
 //            passwordTextField.widthAnchor.constraint(equalTo: loginView.widthAnchor, multiplier: 0.5)
         ])
     }
-
-    //MARK: - Lifecycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    private func configureLoginButton() {
+        //Button to log in
+        loginButton.setTitle("Login", for: .normal)
+        loginButton.backgroundColor = .systemBlue
+        loginButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLogin)))
+        loginView.addSubview(loginButton)
         
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loginButton.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
+            loginButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor),
+            loginButton.widthAnchor.constraint(equalTo: loginView.widthAnchor, multiplier: 0.3)
+        ])
+    }
+    
+    /// Configures the label which is displayed if the login info is not correct
+    private func configureCorrectLoginLabel() {
+        //Label whick checks whether the login info is correct
+        correctLoginLabel.alpha = 0.0
+        correctLoginLabel.textAlignment = .center
+        correctLoginLabel.sizeToFit()
+        loginView.addSubview(correctLoginLabel)
+        
+        correctLoginLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            correctLoginLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20.0),
+            correctLoginLabel.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
+        ])
+    }
+    
+    private func configureTopLabel () {
+        //Top label
+        titleLabel.text = "Login to access your account"
+        titleLabel.textAlignment = .center
+        titleLabel.sizeToFit()
+        loginView.addSubview(titleLabel)
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: loginView.topAnchor, constant: 15.0),
+            titleLabel.centerXAnchor.constraint(equalTo: loginView.centerXAnchor)
+        ])
+    }
+    
+    private func configureLoginView() {
         //Main window
         loginView.frame.size = CGSize(width: view.frame.size.width / 2, height: view.frame.size.height / 4)
         loginView.center = view.center
@@ -153,47 +193,17 @@ class LoginViewController: UIViewController {
             loginView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             loginView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
-        
-        //See description
+    }
+
+    //MARK: - Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        configureLoginView()
+        configureTopLabel()
         configureLoginSection()
-        
-        //Top label
-        titleLabel.text = "Login to access your account"
-        titleLabel.textAlignment = .center
-        titleLabel.sizeToFit()
-        loginView.addSubview(titleLabel)
-        
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: loginView.topAnchor, constant: 15.0),
-            titleLabel.centerXAnchor.constraint(equalTo: loginView.centerXAnchor)
-        ])
-        
-        
-        //Label whick checks whether the login info is correct
-        correctLoginLabel.alpha = 0.0
-        correctLoginLabel.textAlignment = .center
-        correctLoginLabel.sizeToFit()
-        loginView.addSubview(correctLoginLabel)
-        
-        correctLoginLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            correctLoginLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20.0),
-            correctLoginLabel.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
-        ])
-        
-        //Button to log in
-        loginButton.setTitle("Login", for: .normal)
-        loginButton.backgroundColor = .systemBlue
-        loginButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLogin)))
-        loginView.addSubview(loginButton)
-        
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            loginButton.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
-            loginButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor),
-            loginButton.widthAnchor.constraint(equalTo: loginView.widthAnchor, multiplier: 0.3)
-        ])
+        configureCorrectLoginLabel()
+        configureLoginButton()
     }
 }
 
