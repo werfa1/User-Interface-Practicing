@@ -17,6 +17,7 @@ class TabBarViewController: UITabBarController {
     
     //MARK: - Functions
     
+    /// Creates a navigation controller with a FriendTableView
     private func createFriedsNC() -> UINavigationController {
         let friendsTableVC = FriendsTableVC()
         friendsTableVC.title = "Friends"
@@ -25,7 +26,7 @@ class TabBarViewController: UITabBarController {
         return UINavigationController(rootViewController: friendsTableVC)
     }
     
-    
+    /// Creates a navigation controller with a CommunityTableView
     private func createCommunityNC() -> UINavigationController {
         let communityTableVC = CommunityTableVC()
         communityTableVC.title = "Communities"
