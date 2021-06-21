@@ -41,6 +41,24 @@ class CommunityTableVC: UITableViewController {
         let globalSearchVC = GlobalSearchCommunityVC()
         navigationController?.pushViewController(globalSearchVC, animated: true)
     }
+    
+    // Creating custom unfriend swipe
+    private func deleteRow(rowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Unfollow") { [weak self] (_, _, _) in
+            guard let self = self else {return}
+            self.communitiesList.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.reloadData()
+        }
+        action.backgroundColor = .systemIndigo
+        return action
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = self.deleteRow(rowAtIndexPath: indexPath)
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        return swipe
+    }
 }
 
     //MARK: - Extensions

@@ -34,7 +34,7 @@ class FriendsTableVC: UITableViewController {
     
     //MARK: - Functions
     
-    // Creating custom delete swipe
+    // Creating custom unfriend swipe
     private func deleteRow(rowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Unfriend") { [weak self] (_, _, _) in
             guard let self = self else {return}
@@ -42,7 +42,7 @@ class FriendsTableVC: UITableViewController {
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()
         }
-        action.backgroundColor = .purple
+        action.backgroundColor = .systemIndigo
         return action
     }
     
