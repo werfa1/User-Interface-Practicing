@@ -23,6 +23,8 @@ class PhotoCollectionVC: UICollectionViewController {
         self.collectionView.dataSource = self
         self.collectionView.backgroundColor = .systemTeal
     }
+    
+   
 }
 
 //MARK: - Extension
@@ -43,15 +45,6 @@ extension PhotoCollectionVC {
         cell.configure(with: UIImage(named: selectedFriendProfilePic)!)
         
         return cell
-    }
-    
-    
-}
-
-//Delegation protocol
-extension PhotoCollectionVC: FriendSelectionDelegate {
-    func didSelectFriend(profilePic: String) {
-        self.selectedFriendProfilePic = profilePic
     }
 }
 

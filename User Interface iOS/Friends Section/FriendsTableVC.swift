@@ -31,6 +31,26 @@ class FriendsTableVC: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    //MARK: - Functions
+    
+    // Creating custom delete swipe
+    private func deleteRow(rowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Unfriend") { [weak self] (_, _, _) in
+            guard let self = self else {return}
+            self.friendList.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.reloadData()
+        }
+        action.backgroundColor = .purple
+        return action
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = self.deleteRow(rowAtIndexPath: indexPath)
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        return swipe
+    }
 }
 
 //MARK: - Extensions
@@ -50,12 +70,6 @@ extension FriendsTableVC {
         cell.configureCell(WithUser: friendList[indexPath.row])
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
