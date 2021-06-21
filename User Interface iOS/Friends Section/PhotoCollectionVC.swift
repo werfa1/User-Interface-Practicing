@@ -39,6 +39,7 @@ extension PhotoCollectionVC {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as! PhotoCell
         
+        cell.contentView.contentMode = .scaleAspectFill
         cell.configure(with: UIImage(named: selectedFriendProfilePic)!)
         
         return cell

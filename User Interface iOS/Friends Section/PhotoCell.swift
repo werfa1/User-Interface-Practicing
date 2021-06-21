@@ -26,6 +26,13 @@ class PhotoCell: UICollectionViewCell {
     }
     
     //MARK: - Functions
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        //Sets imageView to take the whole cell's space
+        imageView.frame = contentView.bounds
+    }
+    
     func configure(with image: UIImage) {
         imageView.image = image
     }
