@@ -32,6 +32,11 @@ class FriendCell: UITableViewCell {
     
     //MARK: - Functions
     
+    func configureCell(WithUser user: User) {
+        self.userName.text = user.userName
+        self.userProfilePic.image = UIImage(named: user.userProfilePicture)
+    }
+    
     private func configureImageView() {
         userProfilePic.layer.cornerRadius = 10
         userProfilePic.clipsToBounds      = true
@@ -57,8 +62,7 @@ class FriendCell: UITableViewCell {
             userName.centerYAnchor.constraint(equalTo: centerYAnchor),
             userName.trailingAnchor.constraint(equalTo: trailingAnchor),
             userName.leadingAnchor.constraint(equalTo: userProfilePic.trailingAnchor, constant: 15.0),
-            userName.bottomAnchor.constraint(equalTo: bottomAnchor),
-            userName.widthAnchor.constraint(equalToConstant: 50.0)
+            userName.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

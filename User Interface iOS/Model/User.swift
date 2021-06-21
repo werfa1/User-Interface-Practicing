@@ -12,7 +12,8 @@ struct User {
     //MARK: - Variables
     
     var userName: String
-    var userHomeTown: String
-    //var followedGroups: [Group]
+    
+    //Passing the name of the image in Assets
+    var userProfilePicture: String
     
 }

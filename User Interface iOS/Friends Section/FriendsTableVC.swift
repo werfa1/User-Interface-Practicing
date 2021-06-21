@@ -11,7 +11,9 @@ class FriendsTableVC: UITableViewController {
     
     //MARK: - Variables
     
-    var friendList = [User]()
+    var friendList = [User(userName: "Ivan Ivanov", userProfilePicture: "random-dude"),
+                      User(userName: "Gayl Ord", userProfilePicture: "random-dude-2"),
+                      User(userName: "Joe Mama", userProfilePicture: "random-woman")]
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -31,13 +33,18 @@ extension FriendsTableVC {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return friendList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier, for: indexPath) as! FriendCell
-        cell.userProfilePic.image = UIImage(named: "random-dude")
-        cell.userName.text = "Ivan Ivanov"
+        
+//        cell.userProfilePic.image = UIImage(named: "random-dude")
+//
+//        cell.userName.text = "Ivan Ivanov"
+        
+        cell.configureCell(WithUser: friendList[indexPath.row])
+        
         return cell
     }
     
