@@ -18,10 +18,10 @@ class FriendsTableVC: UITableViewController {
     //MARK: - Variables
     
     //Data source
-    var friendList = [User(userName: "Ivan Ivanov", userProfilePicture: "random-dude"),
-                      User(userName: "Gayl Ord", userProfilePicture: "random-dude-2"),
-                      User(userName: "Joe Mama", userProfilePicture: "random-woman"),
-                      User(userName: "Dagny Taghart", userProfilePicture: "random-woman-2")]
+    var friendList = [Friend(friendName: "Ivan Ivanov", friendProfilePicture: "random-dude"),
+                      Friend(friendName: "Gayl Ord", friendProfilePicture: "random-dude-2"),
+                      Friend(friendName: "Joe Mama", friendProfilePicture: "random-woman"),
+                      Friend(friendName: "Dagny Taghart", friendProfilePicture: "random-woman-2")]
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -77,7 +77,7 @@ extension FriendsTableVC {
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 5, right: 8)
         let photoCollectionVC = PhotoCollectionVC(collectionViewLayout: layout)
-        photoCollectionVC.selectedFriendProfilePic = friendList[indexPath.row].userProfilePicture
+        photoCollectionVC.selectedFriendProfilePic = friendList[indexPath.row].friendProfilePicture
         navigationController?.pushViewController(photoCollectionVC, animated: true)
     }
 }

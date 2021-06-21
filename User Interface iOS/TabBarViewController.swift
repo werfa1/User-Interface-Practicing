@@ -11,7 +11,7 @@ class TabBarViewController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.viewControllers = [createFriedsNC(), createCommunityNC()]
+        self.viewControllers = [createFriedsNC(), createGroupNC()]
         UITabBar.appearance().tintColor = .systemPurple
         
         guard let items = tabBar.items else { return }
@@ -29,10 +29,10 @@ class TabBarViewController: UITabBarController {
         return UINavigationController(rootViewController: friendsTableVC)
     }
     
-    /// Creates a navigation controller with a CommunityTableView
-    private func createCommunityNC() -> UINavigationController {
-        let communityTableVC = CommunityTableVC()
-        communityTableVC.title = "Communities" 
-        return UINavigationController(rootViewController: communityTableVC)
+    /// Creates a navigation controller with a GroupTableVC
+    private func createGroupNC() -> UINavigationController {
+        let groupTableVC = GroupTableVC()
+        groupTableVC.title = "Groups" 
+        return UINavigationController(rootViewController: groupTableVC)
     }
 }

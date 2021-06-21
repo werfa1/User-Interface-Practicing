@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct User {
+struct Friend {
     
     //MARK: - Variables
     
-    var userName: String
+    var friendName: String
     
     //Passing the name of the image in Assets
-    var userProfilePicture: String
+    var friendProfilePicture: String
     
 }

@@ -1,5 +1,5 @@
 //
-//  GlobalSearchCommunityVC.swift
+//  GlobalSearchGroupVC.swift
 //  User Interface iOS
 //
 //  Created by Pavel Otverchenko on 18.06.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GlobalSearchCommunityVC: UITableViewController {
+class GlobalSearchGroupVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,7 @@ class GlobalSearchCommunityVC: UITableViewController {
 
 }
 
-extension GlobalSearchCommunityVC {
+extension GlobalSearchGroupVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

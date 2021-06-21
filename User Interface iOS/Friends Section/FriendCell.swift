@@ -32,9 +32,9 @@ class FriendCell: UITableViewCell {
     
     //MARK: - Functions
     
-    func configureCell(WithUser user: User) {
-        self.userName.text = user.userName
-        self.userProfilePic.image = UIImage(named: user.userProfilePicture)
+    func configureCell(WithUser user: Friend) {
+        self.userName.text = user.friendName
+        self.userProfilePic.image = UIImage(named: user.friendProfilePicture)
     }
     
     private func configureImageView() {

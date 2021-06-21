@@ -1,5 +1,5 @@
 //
-//  CommunityTableVC.swift
+//  GroupTableVC.swift
 //  User Interface iOS
 //
 //  Created by Pavel Otverchenko on 17.06.2021.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class CommunityTableVC: UITableViewController {
+class GroupTableVC: UITableViewController {
     
     //MARK: - Variables
     
-    var communitiesList = [Group(groupName: "Weeb shit", groupProfilePic: "group1"),
+    var groupsList = [Group(groupName: "Weeb shit", groupProfilePic: "group1"),
                            Group(groupName: "FairWind", groupProfilePic: "group2"),
                            Group(groupName: "Hmmm", groupProfilePic: "group3")]
     
@@ -20,7 +20,7 @@ class CommunityTableVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(CommunityCell.self, forCellReuseIdentifier: CommunityCell.identifier)
+        tableView.register(GroupCell.self, forCellReuseIdentifier: GroupCell.identifier)
         tableView.rowHeight = UIScreen.main.bounds.height * 0.15
     }
     
@@ -38,7 +38,7 @@ class CommunityTableVC: UITableViewController {
     
     @objc
     func handleBarButtonTap (_ sender: UIBarButtonItem) {
-        let globalSearchVC = GlobalSearchCommunityVC()
+        let globalSearchVC = GlobalSearchGroupVC()
         navigationController?.pushViewController(globalSearchVC, animated: true)
     }
     
@@ -46,7 +46,7 @@ class CommunityTableVC: UITableViewController {
     private func deleteRow(rowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Unfollow") { [weak self] (_, _, _) in
             guard let self = self else {return}
-            self.communitiesList.remove(at: indexPath.row)
+            self.groupsList.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()
         }
@@ -63,19 +63,19 @@ class CommunityTableVC: UITableViewController {
 
     //MARK: - Extensions
 
-extension CommunityTableVC {
+extension GroupTableVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return communitiesList.count
+        return groupsList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CommunityCell.identifier, for: indexPath) as! CommunityCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: GroupCell.identifier, for: indexPath) as! GroupCell
         
-        cell.configureCell(WithGroup: communitiesList[indexPath.row])
+        cell.configureCell(WithGroup: groupsList[indexPath.row])
         
         return cell
     }
