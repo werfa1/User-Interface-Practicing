@@ -17,15 +17,12 @@ class GroupTableVC: UITableViewController {
     
     var globalGroupListSource = [Group(groupName: "Grand Orient", groupProfilePic: "orient"),
                                  Group(groupName: "Gothic Architecture", groupProfilePic: "gothic"),
-                                 Group(groupName: "Dark Souls", groupProfilePic: "darkSouls"),
                                  Group(groupName: "Realist Art", groupProfilePic: "realArt"),
                                  Group(groupName: "Scotlands", groupProfilePic: "scotland"),
-                                 Group(groupName: "Fairwind", groupProfilePic: "fairWind"),
                                  Group(groupName: "Boxing", groupProfilePic: "box"),
                                  Group(groupName: "Borderlands", groupProfilePic: "borderlands"),
-                                 Group(groupName: "Academic architecture", groupProfilePic: "academic"),
-                                 Group(groupName: "Hmmm", groupProfilePic: "hmmm")
-          ]
+                                 Group(groupName: "Academic architecture", groupProfilePic: "academic")
+    ]
     
     
     //MARK: - Lifecycle
@@ -60,7 +57,10 @@ class GroupTableVC: UITableViewController {
     private func deleteRow(rowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Unfollow") { [weak self] (_, _, _) in
             guard let self = self else {return}
-            self.groupsList.remove(at: indexPath.row)
+            
+            let unsubscribedGroup = self.groupsList.remove(at: indexPath.row)
+            self.globalGroupListSource.append(unsubscribedGroup)
+            
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()
         }
