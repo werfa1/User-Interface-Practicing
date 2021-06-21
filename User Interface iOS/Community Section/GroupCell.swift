@@ -38,7 +38,7 @@ class GroupCell: UITableViewCell {
     }
     
     private func configureImageView() {
-        groupProfilePic.layer.cornerRadius = 20
+        groupProfilePic.layer.cornerRadius = 10
         groupProfilePic.clipsToBounds      = true
         
         groupProfilePic.translatesAutoresizingMaskIntoConstraints = false

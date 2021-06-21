@@ -11,9 +11,21 @@ class GroupTableVC: UITableViewController {
     
     //MARK: - Variables
     
-    var groupsList = [Group(groupName: "Weeb shit", groupProfilePic: "darkSouls"),
-                           Group(groupName: "FairWind", groupProfilePic: "fairWind"),
+    var groupsList = [Group(groupName: "Dark Souls", groupProfilePic: "darkSouls"),
+                           Group(groupName: "Fairwind", groupProfilePic: "fairWind"),
                            Group(groupName: "Hmmm", groupProfilePic: "hmmm")]
+    
+    var globalGroupListSource = [Group(groupName: "Grand Orient", groupProfilePic: "orient"),
+                                 Group(groupName: "Gothic Architecture", groupProfilePic: "gothic"),
+                                 Group(groupName: "Dark Souls", groupProfilePic: "darkSouls"),
+                                 Group(groupName: "Realist Art", groupProfilePic: "realArt"),
+                                 Group(groupName: "Scotlands", groupProfilePic: "scotland"),
+                                 Group(groupName: "Fairwind", groupProfilePic: "fairWind"),
+                                 Group(groupName: "Boxing", groupProfilePic: "box"),
+                                 Group(groupName: "Borderlands", groupProfilePic: "borderlands"),
+                                 Group(groupName: "Academic architecture", groupProfilePic: "academic"),
+                                 Group(groupName: "Hmmm", groupProfilePic: "hmmm")
+          ]
     
     
     //MARK: - Lifecycle
@@ -39,6 +51,8 @@ class GroupTableVC: UITableViewController {
     @objc
     func handleBarButtonTap (_ sender: UIBarButtonItem) {
         let globalSearchVC = GlobalSearchGroupVC()
+        globalSearchVC.globalGroupList = globalGroupListSource
+        globalSearchVC.subcribeDelegate = self
         navigationController?.pushViewController(globalSearchVC, animated: true)
     }
     
@@ -84,5 +98,13 @@ extension GroupTableVC {
         if editingStyle == .delete {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+}
+
+extension GroupTableVC: SubscriptionDelegate {
+    func didSubscribeToGroup(_ group: Group, atIndex: Int) {
+        groupsList.append(group)
+        globalGroupListSource.remove(at: atIndex)
+        tableView.reloadData()
     }
 }

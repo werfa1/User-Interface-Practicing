@@ -7,18 +7,18 @@
 
 import UIKit
 
+protocol SubscriptionDelegate: AnyObject {
+    func didSubscribeToGroup(_ group: Group, atIndex index: Int)
+}
+
 class GlobalSearchGroupVC: UITableViewController {
     
     //MARK: - Variables
     
-    var globalGroupList = [Group(groupName: "Grand Orient", groupProfilePic: "orient"),
-                           Group(groupName: "Gothic Architecture", groupProfilePic: "gothic"),
-                           Group(groupName: "Realist Art", groupProfilePic: "realArt"),
-                           Group(groupName: "Scotlands", groupProfilePic: "scotland"),
-                           Group(groupName: "Boxing", groupProfilePic: "box"),
-                           Group(groupName: "Borderlands", groupProfilePic: "borderlands"),
-                           Group(groupName: "Academic architecture", groupProfilePic: "academic")
-    ]
+    weak var subcribeDelegate: SubscriptionDelegate?
+    
+    var globalGroupList = [Group]()
+    
     //MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -48,10 +48,27 @@ extension GlobalSearchGroupVC {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tableView.deleteRows(at: [indexPath], with: .fade)
+    private func followGroup(rowIndexPathAt indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Follow") { [weak self] (_, _, _) in
+            guard let self = self else {return}
+            
+            //Update model
+            let subscribedGroup = self.globalGroupList.remove(at: indexPath.row)
+            self.subcribeDelegate?.didSubscribeToGroup(subscribedGroup, atIndex: indexPath.row)
+            
+            //Update view
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            self.tableView.reloadData()
         }
+        action.backgroundColor = .systemGreen
+        return action
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = self.followGroup(rowIndexPathAt: indexPath)
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        return swipe
     }
     
 }
