@@ -17,9 +17,6 @@ class FriendsTableVC: UITableViewController {
     
     //MARK: - Variables
     
-    //Delegate
-    var selectionDelegate: FriendSelectionDelegate = PhotoCollectionVC()
-    
     //Data source
     var friendList = [User(userName: "Ivan Ivanov", userProfilePicture: "random-dude"),
                       User(userName: "Gayl Ord", userProfilePicture: "random-dude-2"),
@@ -61,13 +58,11 @@ extension FriendsTableVC {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        selectionDelegate.didSelectFriend(profilePic: friendList[indexPath.row].userProfilePicture)
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 5, right: 8)
         let photoCollectionVC = PhotoCollectionVC(collectionViewLayout: layout)
         navigationController?.pushViewController(photoCollectionVC, animated: true)
+        photoCollectionVC.selectedFriendProfilePic = friendList[indexPath.row].userProfilePicture
     }
 }

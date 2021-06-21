@@ -10,7 +10,7 @@ import UIKit
 class PhotoCollectionVC: UICollectionViewController {
     //MARK: - Variables
     
-    var selectedFriendProfilePic: String = "random-dude"
+    var selectedFriendProfilePic: String!
     
     private var photoCollectionView: UICollectionView!
     
@@ -18,7 +18,6 @@ class PhotoCollectionVC: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Register cell classes
         self.collectionView!.register(PhotoCell.nib(), forCellWithReuseIdentifier: PhotoCell.identifier)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -44,10 +43,21 @@ extension PhotoCollectionVC {
         
         return cell
     }
+    
+    
 }
 
+//Delegation protocol
 extension PhotoCollectionVC: FriendSelectionDelegate {
     func didSelectFriend(profilePic: String) {
         self.selectedFriendProfilePic = profilePic
+    }
+}
+
+extension PhotoCollectionVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = view.frame.size.width * 0.8
+        let cellHeight = cellWidth / 0.75
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }
