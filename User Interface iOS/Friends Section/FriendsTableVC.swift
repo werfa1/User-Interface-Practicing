@@ -27,7 +27,7 @@ class FriendsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(FriendCell.self, forCellReuseIdentifier: FriendCell.identifier)
-        tableView.rowHeight = 120
+        tableView.rowHeight = UIScreen.main.bounds.height * 0.15
         tableView.delegate = self
         tableView.dataSource = self
     }

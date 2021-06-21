@@ -45,7 +45,7 @@ class CommunityCell: UITableViewCell {
         NSLayoutConstraint.activate([
             communityProfilePic.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             communityProfilePic.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            communityProfilePic.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(self.frame.size.width - 15.0)),
+            communityProfilePic.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(self.frame.size.width - 25.0)),
             communityProfilePic.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
     }

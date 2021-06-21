@@ -45,7 +45,7 @@ class FriendCell: UITableViewCell {
         NSLayoutConstraint.activate([
             userProfilePic.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             userProfilePic.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            userProfilePic.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(self.frame.size.width - 15.0)),
+            userProfilePic.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(self.frame.size.width - 25.0)),
             userProfilePic.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
     }

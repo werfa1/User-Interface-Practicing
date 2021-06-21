@@ -21,7 +21,7 @@ class CommunityTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(CommunityCell.self, forCellReuseIdentifier: CommunityCell.identifier)
-        tableView.rowHeight = 120
+        tableView.rowHeight = UIScreen.main.bounds.height * 0.15
     }
     
     override func viewWillAppear(_ animated: Bool) {
