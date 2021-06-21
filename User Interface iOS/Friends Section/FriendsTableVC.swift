@@ -20,13 +20,14 @@ class FriendsTableVC: UITableViewController {
     //Data source
     var friendList = [User(userName: "Ivan Ivanov", userProfilePicture: "random-dude"),
                       User(userName: "Gayl Ord", userProfilePicture: "random-dude-2"),
-                      User(userName: "Joe Mama", userProfilePicture: "random-woman")]
+                      User(userName: "Joe Mama", userProfilePicture: "random-woman"),
+                      User(userName: "Dagny Taghart", userProfilePicture: "random-woman-2")]
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(FriendCell.self, forCellReuseIdentifier: FriendCell.identifier)
-        tableView.rowHeight = 100
+        tableView.rowHeight = 120
         tableView.delegate = self
         tableView.dataSource = self
     }

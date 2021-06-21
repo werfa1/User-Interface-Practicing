@@ -10,5 +10,7 @@ import Foundation
 struct Group {
     
     var groupName: String
-    var groupFollowersNumber: Int
+    
+    //Passing the name of the image in Assets
+    var groupProfilePic: String
 }

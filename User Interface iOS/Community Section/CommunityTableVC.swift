@@ -8,10 +8,20 @@
 import UIKit
 
 class CommunityTableVC: UITableViewController {
+    
+    //MARK: - Variables
+    
+    var communitiesList = [Group(groupName: "Weeb shit", groupProfilePic: "group1"),
+                           Group(groupName: "FairWind", groupProfilePic: "group2"),
+                           Group(groupName: "Hmmm", groupProfilePic: "group3")]
+    
+    
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(CommunityCell.self, forCellReuseIdentifier: CommunityCell.identifier)
+        tableView.rowHeight = 120
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,6 +34,8 @@ class CommunityTableVC: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: barButton)
     }
     
+    //MARK: - Functions
+    
     @objc
     func handleBarButtonTap (_ sender: UIBarButtonItem) {
         let globalSearchVC = GlobalSearchCommunityVC()
@@ -31,26 +43,28 @@ class CommunityTableVC: UITableViewController {
     }
 }
 
+    //MARK: - Extensions
+
 extension CommunityTableVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return communitiesList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CommunityCell.identifier, for: indexPath) as! CommunityCell
-        cell.textLabel?.text = "'sup bitch"
+        
+        cell.configureCell(WithGroup: communitiesList[indexPath.row])
+        
         return cell
     }
   
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
 }
