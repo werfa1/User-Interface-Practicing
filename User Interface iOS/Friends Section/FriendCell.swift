@@ -31,7 +31,8 @@ class FriendCell: UITableViewCell {
     }
     
     //MARK: - Functions
-    func configureImageView() {
+    
+    private func configureImageView() {
         userProfilePic.layer.cornerRadius = 10
         userProfilePic.clipsToBounds      = true
         
@@ -39,15 +40,15 @@ class FriendCell: UITableViewCell {
         NSLayoutConstraint.activate([
             userProfilePic.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             userProfilePic.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            userProfilePic.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(self.frame.size.width - 65.0)),
-            userProfilePic.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            userProfilePic.widthAnchor.constraint(equalToConstant: 65.0)
+            userProfilePic.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(self.frame.size.width - 15.0)),
+            userProfilePic.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+            //userProfilePic.widthAnchor.constraint(equalToConstant: 30.0)
         ])
         
-        userProfilePic.image = UIImage(systemName: "person")
+        //userProfilePic.image = UIImage(systemName: "person")
     }
     
-    func configureLabel() {
+    private func configureLabel() {
         userName.numberOfLines             = 0
         userName.adjustsFontSizeToFitWidth = true
         
@@ -55,7 +56,7 @@ class FriendCell: UITableViewCell {
         NSLayoutConstraint.activate([
             userName.centerYAnchor.constraint(equalTo: centerYAnchor),
             userName.trailingAnchor.constraint(equalTo: trailingAnchor),
-            userName.leadingAnchor.constraint(equalTo: userProfilePic.trailingAnchor),
+            userName.leadingAnchor.constraint(equalTo: userProfilePic.trailingAnchor, constant: 15.0),
             userName.bottomAnchor.constraint(equalTo: bottomAnchor),
             userName.widthAnchor.constraint(equalToConstant: 50.0)
         ])

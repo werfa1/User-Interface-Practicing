@@ -10,10 +10,9 @@ import UIKit
 private let reuseIdentifier = "PhotoCell"
 
 class PhotoCollectionVC: UICollectionViewController {
-    
     //MARK: - Variables
     
-    var photoCollectionView: UICollectionView!
+    private var photoCollectionView: UICollectionView!
     
     //MARK: - Lifecycle
 

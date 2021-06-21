@@ -9,6 +9,10 @@ import UIKit
 
 class FriendsTableVC: UITableViewController {
     
+    //MARK: - Variables
+    
+    var friendList = [User]()
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,10 +21,9 @@ class FriendsTableVC: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-
-    // MARK: - Table view data source
-    
 }
+
+//MARK: - Extensions
 
 extension FriendsTableVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -33,6 +36,7 @@ extension FriendsTableVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier, for: indexPath) as! FriendCell
+        cell.userProfilePic.image = UIImage(named: "random-dude")
         cell.userName.text = "Ivan Ivanov"
         return cell
     }

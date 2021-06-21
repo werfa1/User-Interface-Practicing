@@ -9,9 +9,10 @@ import Foundation
 
 struct User {
     
+    //MARK: - Variables
+    
     var userName: String
     var userHomeTown: String
-    
-    var followedGroups: [Group]
+    //var followedGroups: [Group]
     
 }
