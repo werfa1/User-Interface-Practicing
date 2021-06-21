@@ -57,27 +57,6 @@ class GroupTableVC: UITableViewController {
         globalSearchVC.subcribeDelegate = self
         navigationController?.pushViewController(globalSearchVC, animated: true)
     }
-    
-    // Creating custom unfriend swipe
-    private func deleteRow(rowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .normal, title: "Unfollow") { [weak self] (_, _, _) in
-            guard let self = self else {return}
-            
-            let unsubscribedGroup = self.groupsList.remove(at: indexPath.row)
-            self.globalGroupListSource.append(unsubscribedGroup)
-            
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
-            self.tableView.reloadData()
-        }
-        action.backgroundColor = .systemIndigo
-        return action
-    }
-    
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = self.deleteRow(rowAtIndexPath: indexPath)
-        let swipe = UISwipeActionsConfiguration(actions: [delete])
-        return swipe
-    }
 }
 
     //MARK: - Extensions
@@ -103,6 +82,31 @@ extension GroupTableVC {
         if editingStyle == .delete {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    // Creating custom unfriend swipe
+    private func deleteRow(rowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Unfollow") { [weak self] (_, _, _) in
+            guard let self = self else {return}
+            
+            let unsubscribedGroup = self.groupsList.remove(at: indexPath.row)
+            self.globalGroupListSource.append(unsubscribedGroup)
+            
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.reloadData()
+        }
+        action.backgroundColor = .systemIndigo
+        return action
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = self.deleteRow(rowAtIndexPath: indexPath)
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        return swipe
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
