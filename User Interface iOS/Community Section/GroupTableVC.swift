@@ -11,17 +11,22 @@ class GroupTableVC: UITableViewController {
     
     //MARK: - Variables
     
+    /// DataSource of user's groups
     var groupsList = [Group(groupName: "Dark Souls", groupProfilePic: "darkSouls"),
                            Group(groupName: "Fairwind", groupProfilePic: "fairWind"),
                            Group(groupName: "Hmmm", groupProfilePic: "hmmm")]
     
+    /// DataSource of global list of groups
     var globalGroupListSource = [Group(groupName: "Grand Orient", groupProfilePic: "orient"),
                                  Group(groupName: "Gothic Architecture", groupProfilePic: "gothic"),
                                  Group(groupName: "Realist Art", groupProfilePic: "realArt"),
                                  Group(groupName: "Scotlands", groupProfilePic: "scotland"),
                                  Group(groupName: "Boxing", groupProfilePic: "box"),
                                  Group(groupName: "Borderlands", groupProfilePic: "borderlands"),
-                                 Group(groupName: "Academic architecture", groupProfilePic: "academic")
+                                 Group(groupName: "Academic architecture", groupProfilePic: "academic"),
+                                 Group(groupName: "Christianity", groupProfilePic: "orthodox"),
+                                 Group(groupName: "Orbis Europae", groupProfilePic: "orbis"),
+                                 Group(groupName: "MacOS features", groupProfilePic: "macOS")
     ]
     
     
