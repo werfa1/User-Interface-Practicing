@@ -47,10 +47,7 @@ class FriendCell: UITableViewCell {
             userProfilePic.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             userProfilePic.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(self.frame.size.width - 15.0)),
             userProfilePic.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
-            //userProfilePic.widthAnchor.constraint(equalToConstant: 30.0)
         ])
-        
-        //userProfilePic.image = UIImage(systemName: "person")
     }
     
     private func configureLabel() {

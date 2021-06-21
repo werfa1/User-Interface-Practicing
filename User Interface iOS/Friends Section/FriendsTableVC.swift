@@ -7,10 +7,20 @@
 
 import UIKit
 
+//MARK: - Protocols
+protocol FriendSelectionDelegate {
+    func didSelectFriend (profilePic: String)
+}
+
+
 class FriendsTableVC: UITableViewController {
     
     //MARK: - Variables
     
+    //Delegate
+    var selectionDelegate: FriendSelectionDelegate = PhotoCollectionVC()
+    
+    //Data source
     var friendList = [User(userName: "Ivan Ivanov", userProfilePicture: "random-dude"),
                       User(userName: "Gayl Ord", userProfilePicture: "random-dude-2"),
                       User(userName: "Joe Mama", userProfilePicture: "random-woman")]
@@ -39,10 +49,6 @@ extension FriendsTableVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier, for: indexPath) as! FriendCell
         
-//        cell.userProfilePic.image = UIImage(named: "random-dude")
-//
-//        cell.userName.text = "Ivan Ivanov"
-        
         cell.configureCell(WithUser: friendList[indexPath.row])
         
         return cell
@@ -55,6 +61,9 @@ extension FriendsTableVC {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectionDelegate.didSelectFriend(profilePic: friendList[indexPath.row].userProfilePicture)
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 5, right: 8)

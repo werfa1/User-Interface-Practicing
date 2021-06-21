@@ -7,10 +7,10 @@
 
 import UIKit
 
-private let reuseIdentifier = "PhotoCell"
-
 class PhotoCollectionVC: UICollectionViewController {
     //MARK: - Variables
+    
+    var selectedFriendProfilePic: String = "random-dude"
     
     private var photoCollectionView: UICollectionView!
     
@@ -19,7 +19,7 @@ class PhotoCollectionVC: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Register cell classes
-        self.collectionView!.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.identifier)
+        self.collectionView!.register(PhotoCell.nib(), forCellWithReuseIdentifier: PhotoCell.identifier)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.backgroundColor = .systemTeal
@@ -33,15 +33,21 @@ extension PhotoCollectionVC {
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
-        //cell.imageView.image = UIImage(systemName: "square.and.arrow.up")
-        cell.backgroundColor = .systemPink
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as! PhotoCell
+        
+        cell.configure(with: UIImage(named: selectedFriendProfilePic)!)
+        
         return cell
+    }
+}
+
+extension PhotoCollectionVC: FriendSelectionDelegate {
+    func didSelectFriend(profilePic: String) {
+        self.selectedFriendProfilePic = profilePic
     }
 }
