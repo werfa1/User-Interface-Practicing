@@ -11,9 +11,9 @@ class GroupTableVC: UITableViewController {
     
     //MARK: - Variables
     
-    var groupsList = [Group(groupName: "Weeb shit", groupProfilePic: "group1"),
-                           Group(groupName: "FairWind", groupProfilePic: "group2"),
-                           Group(groupName: "Hmmm", groupProfilePic: "group3")]
+    var groupsList = [Group(groupName: "Weeb shit", groupProfilePic: "darkSouls"),
+                           Group(groupName: "FairWind", groupProfilePic: "fairWind"),
+                           Group(groupName: "Hmmm", groupProfilePic: "hmmm")]
     
     
     //MARK: - Lifecycle
