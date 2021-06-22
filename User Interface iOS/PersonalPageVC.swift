@@ -29,7 +29,7 @@ class PersonalPageVC: UIViewController {
     private func configureProfilePic () {
         
         /// Container view to make shadow visible
-        let outerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width / 3, height: view.frame.size.width / 3))
+        let outerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width / 3.5, height: view.frame.size.width / 3.5))
         outerView.clipsToBounds         = false
         outerView.layer.shadowColor     = UIColor.black.cgColor
         outerView.layer.shadowOpacity   = 1
@@ -57,7 +57,7 @@ class PersonalPageVC: UIViewController {
         //Making imageView circular
         profilePicImageView.layer.borderWidth   = 5.0
         profilePicImageView.layer.masksToBounds = false
-        profilePicImageView.layer.borderColor   = UIColor.white.cgColor
+        profilePicImageView.layer.borderColor   = UIColor.systemTeal.cgColor
         profilePicImageView.layer.cornerRadius  = outerView.frame.size.width / 2 //This divider should be 0.5 of widthAnchor constraint divider
         profilePicImageView.clipsToBounds       = true
         profilePicImageView.layer.shadowRadius  = 5
@@ -65,10 +65,10 @@ class PersonalPageVC: UIViewController {
     }
     
     private func configurePersonalName () {
-        personalNameLabel.text                      = "Dwayne 'The Rock' Johnson"
+        personalNameLabel.text                      = "Dwayne Johnson"
         personalNameLabel.numberOfLines             = 0
         personalNameLabel.adjustsFontSizeToFitWidth = true
-        personalNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        personalNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
         view.addSubview(personalNameLabel)
         
         personalNameLabel.translatesAutoresizingMaskIntoConstraints = false
