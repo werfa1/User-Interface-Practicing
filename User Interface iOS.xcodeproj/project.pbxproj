@@ -22,6 +22,7 @@
 		0697CEBE2678EF370013BCE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0697CEBC2678EF370013BCE7 /* LaunchScreen.storyboard */; };
 		0697CEC92678EF380013BCE7 /* User_Interface_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CEC82678EF380013BCE7 /* User_Interface_iOSTests.swift */; };
 		0697CED42678EF380013BCE7 /* User_Interface_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697CED32678EF380013BCE7 /* User_Interface_iOSUITests.swift */; };
+		06AC15DA2681ED6000AEDAA7 /* PersonalPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AC15D92681ED6000AEDAA7 /* PersonalPageVC.swift */; };
 		06CEB704267CADF6003F5949 /* GlobalSearchGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CEB703267CADF6003F5949 /* GlobalSearchGroupVC.swift */; };
 		06CEB706267CAE7E003F5949 /* GlobalSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CEB705267CAE7E003F5949 /* GlobalSearchCell.swift */; };
 		06CEB709267CFB3A003F5949 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CEB708267CFB3A003F5949 /* Friend.swift */; };
@@ -67,6 +68,7 @@
 		0697CECF2678EF380013BCE7 /* User Interface iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "User Interface iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0697CED32678EF380013BCE7 /* User_Interface_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User_Interface_iOSUITests.swift; sourceTree = "<group>"; };
 		0697CED52678EF380013BCE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06AC15D92681ED6000AEDAA7 /* PersonalPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPageVC.swift; sourceTree = "<group>"; };
 		06CEB703267CADF6003F5949 /* GlobalSearchGroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchGroupVC.swift; sourceTree = "<group>"; };
 		06CEB705267CAE7E003F5949 /* GlobalSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchCell.swift; sourceTree = "<group>"; };
 		06CEB708267CFB3A003F5949 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				0697CEB32678EF370013BCE7 /* SceneDelegate.swift */,
 				0697CEB52678EF370013BCE7 /* LoginViewController.swift */,
 				0663498E267B7D8A004B0812 /* TabBarViewController.swift */,
+				06AC15D92681ED6000AEDAA7 /* PersonalPageVC.swift */,
 				0697CEBF2678EF370013BCE7 /* Info.plist */,
 				06CEB707267CFB22003F5949 /* Model */,
 				0697CEE12678EF560013BCE7 /* Supporting Files */,
@@ -326,6 +329,7 @@
 				066CB2752680909F00B7777E /* PhotoCell.swift in Sources */,
 				06CEB709267CFB3A003F5949 /* Friend.swift in Sources */,
 				06634996267B8FEA004B0812 /* PhotoCollectionVC.swift in Sources */,
+				06AC15DA2681ED6000AEDAA7 /* PersonalPageVC.swift in Sources */,
 				0697CEB62678EF370013BCE7 /* LoginViewController.swift in Sources */,
 				066349A0267B9509004B0812 /* GroupCell.swift in Sources */,
 				0663498F267B7D8A004B0812 /* TabBarViewController.swift in Sources */,

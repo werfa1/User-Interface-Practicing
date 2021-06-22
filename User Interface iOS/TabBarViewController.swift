@@ -11,13 +11,14 @@ class TabBarViewController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.viewControllers = [createFriedsNC(), createGroupNC()]
+        self.viewControllers = [createFriedsNC(), createGroupNC(), createPersonalPageNC()]
         UITabBar.appearance().tintColor = .systemPurple
         
         guard let items = tabBar.items else { return }
         
         items[0].image = UIImage(systemName: "person.circle")
         items[1].image = UIImage(systemName: "person.3.fill")
+        items[2].image = UIImage(systemName: "person.fill")
     }
     
     //MARK: - Functions
@@ -34,5 +35,11 @@ class TabBarViewController: UITabBarController {
         let groupTableVC = GroupTableVC()
         groupTableVC.title = "Groups" 
         return UINavigationController(rootViewController: groupTableVC)
+    }
+    
+    private func createPersonalPageNC() -> UINavigationController {
+        let personalPageVC = PersonalPageVC()
+        personalPageVC.title = "My Page"
+        return UINavigationController(rootViewController: personalPageVC)
     }
 }
