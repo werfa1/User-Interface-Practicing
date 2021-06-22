@@ -33,32 +33,44 @@ class PersonalPageVC: UIViewController {
         outerView.layer.shadowOpacity = 1
         outerView.layer.shadowOffset = CGSize.zero
         outerView.layer.shadowRadius = 10
-        outerView.layer.shadowPath = UIBezierPath(roundedRect: outerView.bounds, cornerRadius: 10).cgPath
+        outerView.layer.shadowPath = UIBezierPath(roundedRect: outerView.bounds, cornerRadius: outerView.frame.size.width / 2).cgPath
+//        outerView.layer.cornerRadius = outerView.frame.size.width / 2
+        
         view.addSubview(outerView)
+        
+        outerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            outerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            outerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            outerView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 3),
+            outerView.heightAnchor.constraint(equalTo: outerView.widthAnchor)
+        ])
         
         profilePicImageView.backgroundColor = .white
         profilePicImageView.contentMode = .scaleAspectFill
         profilePicImageView.frame = outerView.frame
         profilePicImageView.image = UIImage(named: "rock")
         outerView.addSubview(profilePicImageView)
-        
+
+//        profilePicImageView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            profilePicImageView.leadingAnchor.constraint(equalTo: outerView.leadingAnchor),
+//            profilePicImageView.topAnchor.constraint(equalTo: outerView.topAnchor),
+//            profilePicImageView.trailingAnchor.constraint(equalTo: outerView.trailingAnchor),
+//            profilePicImageView.bottomAnchor.constraint(equalTo: outerView.bottomAnchor)
+//        ])
+
         //Making imageView circular
         profilePicImageView.layer.borderWidth = 5.0
         profilePicImageView.layer.masksToBounds = false
         profilePicImageView.layer.borderColor = UIColor.white.cgColor
-        profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 1.5 //This divider should be 0.5 of widthAnchor constraint divider
+        profilePicImageView.layer.cornerRadius = outerView.frame.size.width / 2 //This divider should be 0.5 of widthAnchor constraint divider
         profilePicImageView.clipsToBounds = true
         profilePicImageView.layer.shadowRadius = 5
-//        profilePicImageView.layer
         profilePicImageView.layer.shadowColor = UIColor.black.cgColor
         
-        profilePicImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            profilePicImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            profilePicImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            profilePicImageView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 3),
-            profilePicImageView.heightAnchor.constraint(equalTo: profilePicImageView.widthAnchor)
-        ])
+        
+        
     }
     
     private func configurePersonalName () {
