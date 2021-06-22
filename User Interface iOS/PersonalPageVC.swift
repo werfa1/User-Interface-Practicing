@@ -19,7 +19,7 @@ class PersonalPageVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        view.backgroundColor = .cyan
+        view.backgroundColor = .white
         configureProfilePic()
     }
     
@@ -27,27 +27,24 @@ class PersonalPageVC: UIViewController {
     
     private func configureProfilePic () {
         
-        
-        
-        
         profilePicImageView.backgroundColor = .white
         profilePicImageView.contentMode = .scaleAspectFill
         profilePicImageView.frame.size = CGSize(width: 100, height: 100)
-        profilePicImageView.image = UIImage(systemName: "person.fill")
+        profilePicImageView.image = UIImage(named: "random-dude")
         view.addSubview(profilePicImageView)
         
         //Making imageView circular
         profilePicImageView.layer.borderWidth = 1.0
         profilePicImageView.layer.masksToBounds = false
         profilePicImageView.layer.borderColor = UIColor.white.cgColor
-        profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2
+        profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 1.5 //Divider should be 0.5 of widthAnchor constraint divider
         profilePicImageView.clipsToBounds = true
         
         profilePicImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            profilePicImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            profilePicImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profilePicImageView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 4),
+            profilePicImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            profilePicImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            profilePicImageView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 3),
             profilePicImageView.heightAnchor.constraint(equalTo: profilePicImageView.widthAnchor)
         ])
     }
