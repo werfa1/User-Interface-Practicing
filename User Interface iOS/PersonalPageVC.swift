@@ -27,14 +27,23 @@ class PersonalPageVC: UIViewController {
     
     private func configureProfilePic () {
         
+        let outerView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        outerView.clipsToBounds = false
+        outerView.layer.shadowColor = UIColor.black.cgColor
+        outerView.layer.shadowOpacity = 1
+        outerView.layer.shadowOffset = CGSize.zero
+        outerView.layer.shadowRadius = 10
+        outerView.layer.shadowPath = UIBezierPath(roundedRect: outerView.bounds, cornerRadius: 10).cgPath
+        view.addSubview(outerView)
+        
         profilePicImageView.backgroundColor = .white
         profilePicImageView.contentMode = .scaleAspectFill
-        profilePicImageView.frame.size = CGSize(width: 100, height: 100)
+        profilePicImageView.frame = outerView.frame
         profilePicImageView.image = UIImage(named: "rock")
-        view.addSubview(profilePicImageView)
+        outerView.addSubview(profilePicImageView)
         
         //Making imageView circular
-        profilePicImageView.layer.borderWidth = 1.0
+        profilePicImageView.layer.borderWidth = 5.0
         profilePicImageView.layer.masksToBounds = false
         profilePicImageView.layer.borderColor = UIColor.white.cgColor
         profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 1.5 //This divider should be 0.5 of widthAnchor constraint divider

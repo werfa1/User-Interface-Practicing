@@ -39,7 +39,7 @@ class TabBarViewController: UITabBarController {
     
     private func createPersonalPageNC() -> UINavigationController {
         let personalPageVC = PersonalPageVC()
-        personalPageVC.title = "My Page"
+        personalPageVC.title = "Profile"
         return UINavigationController(rootViewController: personalPageVC)
     }
 }
