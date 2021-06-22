@@ -30,15 +30,18 @@ class PersonalPageVC: UIViewController {
         profilePicImageView.backgroundColor = .white
         profilePicImageView.contentMode = .scaleAspectFill
         profilePicImageView.frame.size = CGSize(width: 100, height: 100)
-        profilePicImageView.image = UIImage(named: "random-dude")
+        profilePicImageView.image = UIImage(named: "rock")
         view.addSubview(profilePicImageView)
         
         //Making imageView circular
         profilePicImageView.layer.borderWidth = 1.0
         profilePicImageView.layer.masksToBounds = false
         profilePicImageView.layer.borderColor = UIColor.white.cgColor
-        profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 1.5 //Divider should be 0.5 of widthAnchor constraint divider
+        profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 1.5 //This divider should be 0.5 of widthAnchor constraint divider
         profilePicImageView.clipsToBounds = true
+        profilePicImageView.layer.shadowRadius = 5
+//        profilePicImageView.layer
+        profilePicImageView.layer.shadowColor = UIColor.black.cgColor
         
         profilePicImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -47,6 +50,10 @@ class PersonalPageVC: UIViewController {
             profilePicImageView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 3),
             profilePicImageView.heightAnchor.constraint(equalTo: profilePicImageView.widthAnchor)
         ])
+    }
+    
+    private func configurePersonalName () {
+        personalNameLabel.text = "The Greatest"
     }
 
 }
