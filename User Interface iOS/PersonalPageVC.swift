@@ -27,15 +27,21 @@ class PersonalPageVC: UIViewController {
     
     private func configureProfilePic () {
         
+        
+        
+        
+        profilePicImageView.backgroundColor = .white
+        profilePicImageView.contentMode = .scaleAspectFill
+        profilePicImageView.frame.size = CGSize(width: 100, height: 100)
+        profilePicImageView.image = UIImage(systemName: "person.fill")
+        view.addSubview(profilePicImageView)
+        
+        //Making imageView circular
         profilePicImageView.layer.borderWidth = 1.0
         profilePicImageView.layer.masksToBounds = false
         profilePicImageView.layer.borderColor = UIColor.white.cgColor
         profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2
         profilePicImageView.clipsToBounds = true
-        profilePicImageView.contentMode = .scaleAspectFill
-        profilePicImageView.frame.size = CGSize(width: 100, height: 100)
-        profilePicImageView.image = UIImage(systemName: "person.fill")
-        view.addSubview(profilePicImageView)
         
         profilePicImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
