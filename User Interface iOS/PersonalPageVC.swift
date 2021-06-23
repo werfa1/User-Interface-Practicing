@@ -91,7 +91,6 @@ class PersonalPageVC: UIViewController {
         NSLayoutConstraint.activate([
             statusLabel.topAnchor.constraint(equalTo: personalNameLabel.bottomAnchor, constant: -30),
             statusLabel.leadingAnchor.constraint(equalTo: (profilePicImageView.superview?.trailingAnchor)!, constant: 16),
-            //statusLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             statusLabel.heightAnchor.constraint(equalToConstant: 75)
         ])
     }

@@ -7,12 +7,22 @@
 
 import UIKit
 
+
+protocol NewProfilePicDelegate: AnyObject {
+    func setNewProfilePic (withImage image: String, forUser userIndex: Int)
+}
+
 class PhotoCollectionVC: UICollectionViewController {
     //MARK: - Variables
     
-    var selectedFriendProfilePic: String!
+    var selectedFriendProfilePic = [String]()
     
     private var photoCollectionView: UICollectionView!
+    
+    weak var newProfilePicDelegate: NewProfilePicDelegate?
+    
+    var pickedFriend = -1
+
     
     //MARK: - Lifecycle
 
@@ -24,7 +34,9 @@ class PhotoCollectionVC: UICollectionViewController {
         self.collectionView.backgroundColor = .systemTeal
     }
     
-   
+    //MARK: - Functions
+    
+    
 }
 
 //MARK: - Extension
@@ -35,16 +47,20 @@ extension PhotoCollectionVC {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return selectedFriendProfilePic.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as! PhotoCell
         
         cell.contentView.contentMode = .scaleAspectFill
-        cell.configure(with: UIImage(named: selectedFriendProfilePic)!)
+        cell.configure(with: UIImage(named: selectedFriendProfilePic[indexPath.row])!)
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        newProfilePicDelegate?.setNewProfilePic(withImage: selectedFriendProfilePic[indexPath.row], forUser: pickedFriend)
     }
 }
 

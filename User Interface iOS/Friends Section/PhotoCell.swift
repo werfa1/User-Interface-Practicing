@@ -10,16 +10,18 @@ import UIKit
 class PhotoCell: UICollectionViewCell {
     
     //MARK: - Variables
+    
     static let identifier = "PhotoCell"
     
-    //MARK: - Outlets
-    var imageView = UIImageView()
+    
+    private var imageView = UIImageView()
     
     //MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         imageView.contentMode = .scaleAspectFill
         imageView.frame.size = self.frame.size
+        
         addSubview(imageView)
         backgroundColor = .white
         contentView.layer.borderWidth = 1
