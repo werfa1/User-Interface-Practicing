@@ -82,7 +82,7 @@ extension FriendsTableVC {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 5, right: 8)
         
         let photoCollectionVC = PhotoCollectionVC(collectionViewLayout: layout)
-        photoCollectionVC.selectedFriendProfilePic = allPhotos//friendList[indexPath.row].friendProfilePicture
+        photoCollectionVC.selectedFriendProfilePic = allPhotos
         photoCollectionVC.newProfilePicDelegate = self
         photoCollectionVC.pickedFriend = indexPath.row
         navigationController?.pushViewController(photoCollectionVC, animated: true)

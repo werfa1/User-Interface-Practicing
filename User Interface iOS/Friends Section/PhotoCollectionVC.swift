@@ -31,7 +31,7 @@ class PhotoCollectionVC: UICollectionViewController {
         self.collectionView!.register(PhotoCell.nib(), forCellWithReuseIdentifier: PhotoCell.identifier)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        self.collectionView.backgroundColor = .systemTeal
+        self.collectionView.backgroundColor = .white
     }
     
     //MARK: - Functions
@@ -60,7 +60,16 @@ extension PhotoCollectionVC {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCell = collectionView.cellForItem(at: indexPath)
+        selectedCell?.layer.borderWidth = 3
+        selectedCell?.layer.borderColor = UIColor.green.cgColor
+        selectedCell?.layer.cornerRadius = 10
         newProfilePicDelegate?.setNewProfilePic(withImage: selectedFriendProfilePic[indexPath.row], forUser: pickedFriend)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            selectedCell?.layer.borderWidth = 0
+            selectedCell?.layer.borderColor = UIColor.clear.cgColor
+            selectedCell?.layer.cornerRadius = 0
+        }
     }
 }
 
