@@ -17,7 +17,7 @@ class FriendsTableVC: UITableViewController {
     
     //MARK: - Variables
     
-    var allPhotos = ["random-dude", "random-dude-2", "random-woman", "random-woman-2"]
+    var allPhotos = ["random-dude", "random-dude-2", "random-woman", "random-woman-2", "jason", "lilly", "jack"]
     
     
     //Data source

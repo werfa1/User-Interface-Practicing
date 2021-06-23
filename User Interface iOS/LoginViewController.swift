@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
     
     /// Checks if the input infor matches the loginInfo
     private func displayLoginResult(infoIsCorrect check: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {[weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {[weak self] in
             guard let self = self else { return }
             self.spinningAnimator.stopAnimating()
             self.spinningAnimator.alpha         = 0 
