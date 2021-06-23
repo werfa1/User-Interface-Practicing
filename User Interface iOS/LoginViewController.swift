@@ -26,16 +26,16 @@ class LoginViewController: UIViewController {
     
     @objc
     private func handleLogin(_ sender: UITapGestureRecognizer) {
-        correctLoginLabel.alpha = 0.0
-        spinningAnimator.alpha = 1.0
-        spinningAnimator.center = loginView.center
+        correctLoginLabel.alpha     = 0.0
+        spinningAnimator.alpha      = 1.0
+        spinningAnimator.center     = loginView.center
         loginView.addSubview(spinningAnimator)
-        spinningAnimator.style = .large
-        spinningAnimator.color = .blue
-        loginLabel.isHidden = true
-        loginTextField.isHidden = true
-        passwordLabel.isHidden = true
-        passwordTextField.isHidden = true
+        spinningAnimator.style      = .large
+        spinningAnimator.color      = .blue
+        loginLabel.isHidden         = true
+        loginTextField.isHidden     = true
+        passwordLabel.isHidden      = true
+        passwordTextField.isHidden  = true
         spinningAnimator.startAnimating()
         
         let inputInforDictionary = ["\(loginTextField.text ??  "")":"\(passwordTextField.text ?? "")"]
@@ -48,19 +48,19 @@ class LoginViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {[weak self] in
             guard let self = self else { return }
             self.spinningAnimator.stopAnimating()
-            self.spinningAnimator.alpha = 0
-            self.loginLabel.isHidden = false
-            self.loginTextField.isHidden = false
-            self.passwordLabel.isHidden = false
-            self.passwordTextField.isHidden = false
+            self.spinningAnimator.alpha         = 0 
+            self.loginLabel.isHidden                = false
+            self.loginTextField.isHidden            = false
+            self.passwordLabel.isHidden             = false
+            self.passwordTextField.isHidden         = false
             if check {
-                let tabBarVc = TabBarViewController()
-                tabBarVc.modalPresentationStyle = .fullScreen
+                let tabBarVc                        = TabBarViewController()
+                tabBarVc.modalPresentationStyle     = .fullScreen
                 self.present(tabBarVc, animated: true, completion: nil)
             } else {
-                self.correctLoginLabel.alpha = 1.0
-                self.correctLoginLabel.text = "Wrong login/password"
-                self.correctLoginLabel.textColor = .red
+                self.correctLoginLabel.alpha        = 1.0
+                self.correctLoginLabel.text         = "Wrong login/password"
+                self.correctLoginLabel.textColor    = .red
             }
         }
     }

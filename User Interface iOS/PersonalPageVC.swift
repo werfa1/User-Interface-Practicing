@@ -22,6 +22,7 @@ class PersonalPageVC: UIViewController {
         view.backgroundColor = .white
         configureProfilePic()
         configurePersonalName()
+        configureStatusLabel()
     }
     
     //MARK: - Functions
@@ -77,6 +78,21 @@ class PersonalPageVC: UIViewController {
             personalNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             personalNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             personalNameLabel.heightAnchor.constraint(equalToConstant: 75)
+        ])
+    }
+    
+    private func configureStatusLabel () {
+        statusLabel.text = "Nice cock, awesome balls"
+        statusLabel.numberOfLines = 0
+        statusLabel.adjustsFontSizeToFitWidth = true
+        view.addSubview(statusLabel)
+        
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            statusLabel.topAnchor.constraint(equalTo: personalNameLabel.bottomAnchor, constant: -30),
+            statusLabel.leadingAnchor.constraint(equalTo: (profilePicImageView.superview?.trailingAnchor)!, constant: 16),
+            //statusLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            statusLabel.heightAnchor.constraint(equalToConstant: 75)
         ])
     }
 }
