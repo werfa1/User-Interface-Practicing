@@ -19,12 +19,16 @@ class FriendsTableVC: UITableViewController {
     
     var allPhotos = ["random-dude", "random-dude-2", "random-woman", "random-woman-2", "jason", "lilly", "jack"]
     
+    private var firstLettersForHeaders = [String]()
     
     //Data source
-    var friendList = [Friend(friendName: "Ivan Ivanov", friendProfilePicture: "random-dude"),
+    private var friendList = [Friend(friendName: "Ivan Ivanov", friendProfilePicture: "random-dude"),
                       Friend(friendName: "Gayl Ord", friendProfilePicture: "random-dude-2"),
                       Friend(friendName: "Joe Mama", friendProfilePicture: "random-woman"),
-                      Friend(friendName: "Dagny Taghart", friendProfilePicture: "random-woman-2")]
+                      Friend(friendName: "Dagny Taghart", friendProfilePicture: "random-woman-2"),
+                      Friend(friendName: "Jason Statham", friendProfilePicture: "jason"),
+                      Friend(friendName: "Lilly Collins", friendProfilePicture: "lilly"),
+                      Friend(friendName: "Jack Black", friendProfilePicture: "jack")]
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -54,21 +58,46 @@ class FriendsTableVC: UITableViewController {
         let swipe = UISwipeActionsConfiguration(actions: [delete])
         return swipe
     }
+    
+    private func returnNumberOfSections() -> Int {
+        friendList.forEach { [weak self] item in
+            guard let self = self else { return }
+            guard let letter = item.friendName.first else { return }
+            let firstLetter = String(letter)
+            if !self.firstLettersForHeaders.contains(firstLetter) {
+                self.firstLettersForHeaders.append(firstLetter)
+            }
+        }
+        firstLettersForHeaders = firstLettersForHeaders.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
+        return self.firstLettersForHeaders.count
+    }
+    
+    private func returnNumberOfRowsInSection (forSection section: Int) -> Int {
+        var counter = 0
+        for friend in friendList {
+            if friend.friendName.firstLetter() == firstLettersForHeaders[section] {
+                counter += 1
+            }
+        }
+        return counter
+    }
 }
 
 //MARK: - Extensions
 
 extension FriendsTableVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return returnNumberOfSections()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friendList.count
+        return returnNumberOfRowsInSection(forSection: section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier, for: indexPath) as! FriendCell
+        
+        //if
         
         cell.configureCell(WithUser: friendList[indexPath.row])
         
@@ -87,11 +116,22 @@ extension FriendsTableVC {
         photoCollectionVC.pickedFriend = indexPath.row
         navigationController?.pushViewController(photoCollectionVC, animated: true)
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return firstLettersForHeaders[section]
+    }
 }
 
 extension FriendsTableVC: NewProfilePicDelegate {
     func setNewProfilePic(withImage image: String, forUser user: Int) {
         friendList[user].friendProfilePicture = image
         tableView.reloadData()
+    }
+}
+
+extension String {
+    func firstLetter () -> String {
+        let firstLetter = self.prefix(1)
+        return String(firstLetter)
     }
 }

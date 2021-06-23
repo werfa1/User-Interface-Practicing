@@ -17,6 +17,7 @@ class PhotoCell: UICollectionViewCell {
     
     private var likeButton = UIButton()
     
+    //Checks if the like button is tapped
     private var isLiked = false
     
     private var likeCountLabel = UILabel()
@@ -78,6 +79,7 @@ class PhotoCell: UICollectionViewCell {
     }
     
     @objc private func likeButtonTapped(_ sender: UIButton) {
+        isLiked.toggle()
         if isLiked {
             sender.setImage(UIImage(named: "fullHeart"), for: .normal)
         } else {
@@ -85,7 +87,7 @@ class PhotoCell: UICollectionViewCell {
         }
         
         likeCountLabel.text = isLiked ? "1 like": ""
-        isLiked.toggle()
+        
     }
     
     func configure(with image: UIImage) {
