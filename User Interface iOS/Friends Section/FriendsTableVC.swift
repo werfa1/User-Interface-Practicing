@@ -13,9 +13,16 @@ protocol FriendSelectionDelegate {
 }
 
 
-class FriendsTableVC: UITableViewController {
+class FriendsTableVC: UITableViewController, UISearchBarDelegate {
+    
+    // MARK: - UI Components -
+    
+    var titleLabel: UILabel!
+    var searchBar: UISearchBar!
     
     //MARK: - Variables
+    
+    var isSearching: Bool = false
     
     var allPhotos = ["random-dude", "random-dude-2", "random-woman", "random-woman-2", "jason", "lilly", "jack"]
     
@@ -30,6 +37,8 @@ class FriendsTableVC: UITableViewController {
                       Friend(friendName: "Lilly Collins", friendProfilePicture: "lilly"),
                       Friend(friendName: "Jack Black", friendProfilePicture: "jack")]
     
+    private var sortedFriendList: [Friend]!
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +46,10 @@ class FriendsTableVC: UITableViewController {
         tableView.rowHeight = UIScreen.main.bounds.height * 0.15
         tableView.delegate = self
         tableView.dataSource = self
+        configureSearchBar()
+        searchBar.delegate = self
+        sortedFriendList = friendList
+        self.tableView.keyboardDismissMode = .onDrag
     }
     
     //MARK: - Functions
@@ -45,7 +58,7 @@ class FriendsTableVC: UITableViewController {
     private func deleteRow(rowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Unfriend") { [weak self] (_, _, _) in
             guard let self = self else {return}
-            self.friendList.remove(at: indexPath.row)
+            self.sortedFriendList.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()
         }
@@ -59,8 +72,10 @@ class FriendsTableVC: UITableViewController {
         return swipe
     }
     
+    //TableView assistant functions
     private func returnNumberOfSections() -> Int {
-        friendList.forEach { [weak self] item in
+        firstLettersForHeaders = []
+        sortedFriendList.forEach { [weak self] item in
             guard let self = self else { return }
             guard let letter = item.friendName.first else { return }
             let firstLetter = String(letter)
@@ -74,13 +89,64 @@ class FriendsTableVC: UITableViewController {
     
     private func returnNumberOfRowsInSection (forSection section: Int) -> Int {
         var counter = 0
-        for friend in friendList {
+        for friend in sortedFriendList {
             if friend.friendName.firstLetter() == firstLettersForHeaders[section] {
                 counter += 1
             }
         }
         return counter
     }
+    
+    //Configuring UI
+    private func configureSearchBar () {
+        
+        titleLabel = UILabel()
+        
+        titleLabel.text = title
+        
+        searchBar = UISearchBar()
+        searchBar.placeholder = "Search"
+        searchBar.isHidden = true
+        
+        let screenWidth = UIScreen.main.bounds.width
+        
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            searchBar.widthAnchor.constraint(equalToConstant: screenWidth - 50),
+        ])
+        
+        let hStack = UIStackView(arrangedSubviews: [titleLabel, searchBar])
+        hStack.axis = .horizontal
+        
+        navigationItem.titleView = hStack
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleSearchButtonTap))
+    
+    }
+    
+    @objc
+    private func handleSearchButtonTap() {
+        isSearching.toggle()
+        UIView.animate(withDuration: 0.3) {
+            self.titleLabel.isHidden = self.isSearching
+            self.searchBar.isHidden = !self.isSearching
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        sortedFriendList = []
+        self.tableView.reloadData()
+        if searchText == "" {
+            sortedFriendList = friendList
+        } else {
+            for friend in friendList {
+                if friend.friendName.lowercased().contains(searchText.lowercased()) {
+                    sortedFriendList.append(friend)
+                }
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
 }
 
 //MARK: - Extensions
@@ -97,7 +163,7 @@ extension FriendsTableVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier, for: indexPath) as! FriendCell
         
-        let sortedArray = friendList.filter { friend in
+        let sortedArray = sortedFriendList.filter { friend in
             friend.friendName.firstLetter() == firstLettersForHeaders[indexPath.section]
         }
         
@@ -126,7 +192,7 @@ extension FriendsTableVC {
 
 extension FriendsTableVC: NewProfilePicDelegate {
     func setNewProfilePic(withImage image: String, forUser user: Int) {
-        friendList[user].friendProfilePicture = image
+        sortedFriendList[user].friendProfilePicture = image
         tableView.reloadData()
     }
 }
