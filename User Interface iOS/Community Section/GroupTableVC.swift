@@ -7,17 +7,23 @@
 
 import UIKit
 
-class GroupTableVC: UITableViewController {
+class GroupTableVC: UITableViewController, UISearchBarDelegate {
     
     //MARK: - Variables
     
+    private var groupTitleLabel = UILabel()
+    private var globalGroupBarButton = UIBarButtonItem()
+    private var groupSearchBar = UISearchBar()
+    
+    private var isSearching = false
+    
     /// DataSource of user's groups
-    var groupsList = [Group(groupName: "Dark Souls", groupProfilePic: "darkSouls"),
+    private var groupsList = [Group(groupName: "Dark Souls", groupProfilePic: "darkSouls"),
                            Group(groupName: "Fairwind", groupProfilePic: "fairWind"),
                            Group(groupName: "Hmmm", groupProfilePic: "hmmm")]
     
     /// DataSource of global list of groups
-    var globalGroupListSource = [Group(groupName: "Grand Orient", groupProfilePic: "orient"),
+    private var globalGroupListSource = [Group(groupName: "Grand Orient", groupProfilePic: "orient"),
                                  Group(groupName: "Gothic Architecture", groupProfilePic: "gothic"),
                                  Group(groupName: "Realist Art", groupProfilePic: "realArt"),
                                  Group(groupName: "Scotlands", groupProfilePic: "scotland"),
@@ -29,6 +35,8 @@ class GroupTableVC: UITableViewController {
                                  Group(groupName: "MacOS features", groupProfilePic: "macOS")
     ]
     
+    private var sortedGroupList: [Group]!
+    
     
     //MARK: - Lifecycle
 
@@ -36,19 +44,52 @@ class GroupTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.register(GroupCell.self, forCellReuseIdentifier: GroupCell.identifier)
         tableView.rowHeight = UIScreen.main.bounds.height * 0.15
+        sortedGroupList = groupsList
+        
+        self.tableView.keyboardDismissMode = .onDrag
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        let barButton = UIButton(type: .custom)
-        barButton.setTitle("Search", for: .normal)
-        barButton.setTitleColor(.systemBlue, for: .normal)
-        barButton.addTarget(self, action: #selector(handleBarButtonTap(_:)), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: barButton)
+        navigationItem.rightBarButtonItem = configureGlobalGroupButton()
+        configureSearchBar()
+        groupSearchBar.delegate = self
     }
     
     //MARK: - Functions
+    
+    private func configureGlobalGroupButton () -> UIBarButtonItem{
+        let barButton = UIButton(type: .custom)
+        barButton.setTitle("Global", for: .normal)
+        barButton.setTitleColor(.systemBlue, for: .normal)
+        barButton.addTarget(self, action: #selector(handleBarButtonTap(_:)), for: .touchUpInside)
+        return UIBarButtonItem(customView: barButton)
+    }
+    
+    private func configureSearchBar () {
+        
+        groupTitleLabel = UILabel()
+        
+        groupTitleLabel.text = title
+        
+        groupSearchBar = UISearchBar()
+        groupSearchBar.placeholder = "Search"
+        groupSearchBar.isHidden = true
+        
+        let screenWidth = UIScreen.main.bounds.width
+        
+        groupSearchBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            groupSearchBar.widthAnchor.constraint(equalToConstant: screenWidth - 50),
+        ])
+        
+        let hStack = UIStackView(arrangedSubviews: [groupSearchBar, groupTitleLabel])
+        hStack.axis = .horizontal
+        
+        navigationItem.titleView = hStack
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleSearchButtonTap))
+    
+    }
     
     @objc
     func handleBarButtonTap (_ sender: UIBarButtonItem) {
@@ -57,6 +98,32 @@ class GroupTableVC: UITableViewController {
         globalSearchVC.subcribeDelegate = self
         navigationController?.pushViewController(globalSearchVC, animated: true)
     }
+    
+    @objc
+    private func handleSearchButtonTap() {
+        isSearching.toggle()
+        UIView.animate(withDuration: 0.3) {
+            self.groupTitleLabel.isHidden = self.isSearching
+            self.groupSearchBar.isHidden = !self.isSearching
+            self.navigationItem.rightBarButtonItem = self.isSearching ? nil : self.configureGlobalGroupButton()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        sortedGroupList = []
+        self.tableView.reloadData()
+        if searchText == "" {
+            sortedGroupList = groupsList
+        } else {
+            for group in groupsList {
+                if group.groupName.lowercased().contains(searchText.lowercased()) {
+                    sortedGroupList.append(group)
+                }
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
 }
 
     //MARK: - Extensions
@@ -67,13 +134,13 @@ extension GroupTableVC {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupsList.count
+        return sortedGroupList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GroupCell.identifier, for: indexPath) as! GroupCell
         
-        cell.configureCell(WithGroup: groupsList[indexPath.row])
+        cell.configureCell(WithGroup: sortedGroupList[indexPath.row])
         
         return cell
     }
@@ -112,7 +179,7 @@ extension GroupTableVC {
 
 extension GroupTableVC: SubscriptionDelegate {
     func didSubscribeToGroup(_ group: Group, atIndex: Int) {
-        groupsList.append(group)
+        sortedGroupList.append(group)
         globalGroupListSource.remove(at: atIndex)
         tableView.reloadData()
     }
