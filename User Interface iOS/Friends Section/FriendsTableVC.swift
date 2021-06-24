@@ -95,14 +95,14 @@ extension FriendsTableVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        let headerFirstLetter = tableView.headerView(forSection: indexPath.section)?.textLabel?.text?.firstLetter()
-        for index in friendList.indices {
-            if friendList[index].friendName.firstLetter() == tableView.headerView(forSection: indexPath.section)?.textLabel?.text?.firstLetter() {
-                cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier, for: indexPath) as! FriendCell
-                (cell as! FriendCell).configureCell(WithUser: friendList[indexPath.row])
-            }
+        let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier, for: indexPath) as! FriendCell
+        
+        let sortedArray = friendList.filter { friend in
+            friend.friendName.firstLetter() == firstLettersForHeaders[indexPath.section]
         }
+        
+        cell.configureCell(WithUser: sortedArray[indexPath.row])
+        
         return cell
     }
     
