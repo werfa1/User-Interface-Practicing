@@ -51,7 +51,7 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationItem.rightBarButtonItem = configureGlobalGroupButton()
+        navigationItem.leftBarButtonItem = configureGlobalGroupButton()
         configureSearchBar()
         groupSearchBar.delegate = self
     }
@@ -83,11 +83,11 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
             groupSearchBar.widthAnchor.constraint(equalToConstant: screenWidth - 50),
         ])
         
-        let hStack = UIStackView(arrangedSubviews: [groupSearchBar, groupTitleLabel])
+        let hStack = UIStackView(arrangedSubviews: [groupTitleLabel, groupSearchBar])
         hStack.axis = .horizontal
         
         navigationItem.titleView = hStack
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleSearchButtonTap))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleSearchButtonTap))
     
     }
     
@@ -105,7 +105,7 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
         UIView.animate(withDuration: 0.3) {
             self.groupTitleLabel.isHidden = self.isSearching
             self.groupSearchBar.isHidden = !self.isSearching
-            self.navigationItem.rightBarButtonItem = self.isSearching ? nil : self.configureGlobalGroupButton()
+            self.navigationItem.leftBarButtonItem = self.isSearching ? nil : self.configureGlobalGroupButton()
         }
     }
     
@@ -123,6 +123,8 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
         }
         self.tableView.reloadData()
     }
+    
+    
     
 }
 
@@ -179,6 +181,7 @@ extension GroupTableVC {
 
 extension GroupTableVC: SubscriptionDelegate {
     func didSubscribeToGroup(_ group: Group, atIndex: Int) {
+        groupsList.append(group)
         sortedGroupList.append(group)
         globalGroupListSource.remove(at: atIndex)
         tableView.reloadData()
