@@ -140,13 +140,14 @@ class LoginViewController: UIViewController {
         loginButton.setTitle("Login", for: .normal)
         loginButton.backgroundColor = .systemBlue
         loginButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLogin)))
+        loginButton.layer.cornerRadius = 5
         loginView.addSubview(loginButton)
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             loginButton.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
-            loginButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor),
-            loginButton.widthAnchor.constraint(equalTo: loginView.widthAnchor, multiplier: 0.3)
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 50),
+            loginButton.widthAnchor.constraint(equalTo: loginView.widthAnchor, multiplier: 0.75)
         ])
     }
     
