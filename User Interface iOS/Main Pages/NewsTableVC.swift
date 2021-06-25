@@ -39,9 +39,8 @@ extension NewsTableVC {
 
         cell.configure(with: UIImage(named: newsList[indexPath.section])!)
         
-        cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 1
-        cell.layer.borderColor = UIColor.blue.cgColor
+        cell.layer.borderColor = UIColor.black.cgColor
         
         return cell
     }

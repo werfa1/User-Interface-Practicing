@@ -85,13 +85,13 @@ class LoginViewController: UIViewController {
         
         let center = view.center
         
-        let circularPath = UIBezierPath(arcCenter: center, radius: 100, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: center, radius: 30, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         
         trackLayer.path = circularPath.cgPath
         
         trackLayer.strokeColor = UIColor.lightGray.cgColor
         trackLayer.fillColor = UIColor.white.cgColor
-        trackLayer.lineWidth = 10
+        trackLayer.lineWidth = 1
                 
         shapeLayer.path = circularPath.cgPath
         view.layer.addSublayer(trackLayer)
@@ -99,7 +99,7 @@ class LoginViewController: UIViewController {
         //Creating a loading layer
         shapeLayer.strokeColor = UIColor.systemBlue.cgColor
         shapeLayer.fillColor = UIColor.white.cgColor
-        shapeLayer.lineWidth = 10
+        shapeLayer.lineWidth = 3
         shapeLayer.lineCap = CAShapeLayerLineCap.round
         
         shapeLayer.strokeEnd = 0

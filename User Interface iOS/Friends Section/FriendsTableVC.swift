@@ -167,6 +167,8 @@ extension FriendsTableVC {
             friend.friendName.firstLetter() == firstLettersForHeaders[indexPath.section]
         }
         
+        //cell.userName.tag
+        
         cell.configureCell(WithUser: sortedArray[indexPath.row])
         
         return cell
