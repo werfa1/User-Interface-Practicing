@@ -205,6 +205,7 @@ class NewsCell: UITableViewCell {
     
     override func prepareForReuse() {
         viewsCountLabel.text = "\(Int(viewsCountLabel.text!)! + 1)"
+        isLiked = false
     }
 }
 
