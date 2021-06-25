@@ -19,11 +19,9 @@ class GroupCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(groupName)
-        addSubview(groupProfilePic)
         
-        configureLabel()
         configureImageView()
+        configureLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -40,27 +38,71 @@ class GroupCell: UITableViewCell {
     private func configureImageView() {
         groupProfilePic.layer.cornerRadius = 10
         groupProfilePic.clipsToBounds      = true
+        groupProfilePic.isUserInteractionEnabled = true
+        groupProfilePic.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        contentView.addSubview(groupProfilePic)
         
         groupProfilePic.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            groupProfilePic.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            groupProfilePic.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            groupProfilePic.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(self.frame.size.width - 25.0)),
-            groupProfilePic.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+            groupProfilePic.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            groupProfilePic.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            groupProfilePic.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -(self.frame.size.width - 25.0)),
+            groupProfilePic.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
     
     private func configureLabel() {
         groupName.numberOfLines             = 0
         groupName.adjustsFontSizeToFitWidth = true
+        contentView.addSubview(groupName)
         
         groupName.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            groupName.centerYAnchor.constraint(equalTo: centerYAnchor),
-            groupName.trailingAnchor.constraint(equalTo: trailingAnchor),
+            groupName.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            groupName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             groupName.leadingAnchor.constraint(equalTo: groupProfilePic.trailingAnchor, constant: 15.0),
-            groupName.bottomAnchor.constraint(equalTo: bottomAnchor)
+            groupName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+    }
+    
+    @objc
+    private func handleTap (_ sender: UITapGestureRecognizer) {
+        
+        switch sender.state {
+        case .ended, .cancelled, .failed:
+            UIView.animate(withDuration: 0.3) {
+                let scale = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                self.groupProfilePic.transform = scale
+            } completion: { _ in
+                UIView.animate(withDuration: 0.3) {
+                    let scale = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                    self.groupProfilePic.transform = scale
+                } completion: { _ in
+                    UIView.animate(withDuration: 0.3) {
+                        let scale = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                        self.groupProfilePic.transform = scale
+                    } completion: { _ in
+                        UIView.animate(withDuration: 0.3) {
+                            let scale = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                            self.groupProfilePic.transform = scale
+                        } completion: { _ in
+                            UIView.animate(withDuration: 0.3) {
+                                let scale = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                                self.groupProfilePic.transform = scale
+                            } completion: { _ in
+                                UIView.animate(withDuration: 0.3) {
+                                    let scale = CGAffineTransform(scaleX: 1, y: 1)
+                                    self.groupProfilePic.transform = scale
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+        default:
+            break
+        }
     }
 
 }

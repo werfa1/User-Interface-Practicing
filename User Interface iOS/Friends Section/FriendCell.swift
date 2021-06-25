@@ -39,7 +39,7 @@ class FriendCell: UITableViewCell {
         userProfilePic.layer.cornerRadius       = 10
         userProfilePic.clipsToBounds            = true
         userProfilePic.isUserInteractionEnabled = true
-        userProfilePic.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLongPress)))
+        userProfilePic.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         contentView.addSubview(userProfilePic)
         
         userProfilePic.translatesAutoresizingMaskIntoConstraints = false
@@ -66,11 +66,10 @@ class FriendCell: UITableViewCell {
     }
     
     @objc
-    private func handleLongPress (_ sender: UITapGestureRecognizer) {
+    private func handleTap (_ sender: UITapGestureRecognizer) {
         
         switch sender.state {
         case .ended, .cancelled, .failed:
-            print("Tapped")
             UIView.animate(withDuration: 0.3) {
                 let scale = CGAffineTransform(scaleX: 0.8, y: 0.8)
                 self.userProfilePic.transform = scale
