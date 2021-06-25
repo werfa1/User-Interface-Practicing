@@ -22,6 +22,19 @@ class LoginViewController: UIViewController {
     private var loginInfo = ["":""]
     let spinningAnimator = UIActivityIndicatorView()
     
+    
+
+    //MARK: - Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        configureLoginView()
+        configureTopLabel()
+        configureLoginSection()
+        configureCorrectLoginLabel()
+        configureLoginButton()
+    }
+    
     //MARK: - Functions
     
     @objc
@@ -110,7 +123,6 @@ class LoginViewController: UIViewController {
             loginTextField.centerYAnchor.constraint(equalTo: loginView.centerYAnchor),
             loginTextField.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -20.0),
             loginTextField.leadingAnchor.constraint(equalTo: loginLabel.trailingAnchor, constant: 52.5)
-//            loginTextField.widthAnchor.constraint(equalTo: loginView.widthAnchor, multiplier: 0.5)
         ])
         
         
@@ -131,7 +143,6 @@ class LoginViewController: UIViewController {
             passwordTextField.leadingAnchor.constraint(equalTo: passwordLabel.trailingAnchor, constant: 20.0),
             passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 20.0),
             passwordTextField.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -20.0)
-//            passwordTextField.widthAnchor.constraint(equalTo: loginView.widthAnchor, multiplier: 0.5)
         ])
     }
     
@@ -194,17 +205,6 @@ class LoginViewController: UIViewController {
             loginView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             loginView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
-    }
-
-    //MARK: - Lifecycle
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        configureLoginView()
-        configureTopLabel()
-        configureLoginSection()
-        configureCorrectLoginLabel()
-        configureLoginButton()
     }
 }
 

@@ -21,9 +21,8 @@ class NewsTableVC: UITableViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.rowHeight = UIScreen.main.bounds.height * 0.5
-        tableView.allowsSelection = false
+        //tableView.allowsSelection = false
     }
-
 }
 
 extension NewsTableVC {
@@ -40,6 +39,7 @@ extension NewsTableVC {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.identifier, for: indexPath) as! NewsCell
 
         cell.configure(with: UIImage(named: newsList[indexPath.row])!)
+        cell.tappedLikeButtonDelegate = self
         cell.likeButton.tag = indexPath.row
         
         return cell
@@ -47,5 +47,11 @@ extension NewsTableVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension NewsTableVC: LikedButtonTappedDelegate {
+    func didTapLikeButton(photoIsLiked isLiked: Bool) {
+        print("The button is \(isLiked ? "liked" : "not liked")")
     }
 }

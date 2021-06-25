@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol LikedButtonTappedDelegate: AnyObject {
+    func didTapLikeButton (photoIsLiked isLike: Bool)
+}
+
 class NewsCell: UITableViewCell {
 
     //MARK: - Variables
@@ -17,30 +21,27 @@ class NewsCell: UITableViewCell {
     
     var likeButton = UIButton()
     
+    weak var tappedLikeButtonDelegate: LikedButtonTappedDelegate?
+    
     //Checks if the like button is tapped
     private var isLiked = false
     
     private var likeCountLabel = UILabel()
     
-    //MARK: - Lifecycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    private var commentButton = UIButton()
     
+    private var shareButton = UIButton()
+    
+    private var eyeButton = UIButton()
+    
+    private var viewsCountLabel = UILabel()
     
     //MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureImageView()
-        
-        configureBottomPart()
-        
-        configureLikeButton()
-        configureLikeCountLabel()
-        
+        doUltimateConfiguration()
         isUserInteractionEnabled = true
-        
         self.clipsToBounds = true
         backgroundColor = .white
     }
@@ -50,6 +51,18 @@ class NewsCell: UITableViewCell {
     }
     
     //MARK: - Functions
+    
+    /// Calls all the configuration functions
+    private func doUltimateConfiguration () {
+        configureImageView()
+        configureBottomPart()
+        configureLikeButton()
+        configureLikeCountLabel()
+        configureCommentButton()
+        configureShareButton()
+        configureEyeButton()
+        configureViewCountLabel()
+    }
     
     private func configureImageView () {
         self.addSubview(newsImageView)
@@ -64,9 +77,11 @@ class NewsCell: UITableViewCell {
     }
     
     private func configureLikeButton () {
-        likeButton.setImage(UIImage(named: "emptyHeart"), for: .normal)
+        //Setting like button
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         likeButton.clipsToBounds = true
         likeButton.addTarget(self, action: #selector(likeButtonTapped(_:)), for: .touchUpInside)
+        //likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(likeButtonPressedThroughGesture)))
         
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -78,29 +93,70 @@ class NewsCell: UITableViewCell {
     }
     
     private func configureLikeCountLabel () {
-        likeCountLabel.text = ""
+        //Setting like count label
+        likeCountLabel.text = "0 like"
         likeCountLabel.numberOfLines = 0
+        likeCountLabel.isHidden = true
         
         likeCountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            likeCountLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             likeCountLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             likeCountLabel.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor),
-            likeCountLabel.topAnchor.constraint(equalTo: newsImageView.bottomAnchor)
+            likeCountLabel.topAnchor.constraint(equalTo: newsImageView.bottomAnchor),
+            likeCountLabel.widthAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func configureCommentButton () {
+        commentButton.setImage(UIImage(systemName: "bubble.right"), for: .normal)
+        
+        commentButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            commentButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            commentButton.topAnchor.constraint(equalTo: newsImageView.bottomAnchor),
+            commentButton.widthAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func configureShareButton () {
+        shareButton.setImage(UIImage(systemName: "arrowshape.turn.up.right"), for: .normal)
+        
+        shareButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            shareButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            shareButton.leadingAnchor.constraint(equalTo: commentButton.trailingAnchor),
+            shareButton.topAnchor.constraint(equalTo: newsImageView.bottomAnchor),
+            shareButton.widthAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func configureEyeButton () {
+        eyeButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        
+        eyeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            eyeButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            eyeButton.topAnchor.constraint(equalTo: newsImageView.bottomAnchor),
+            eyeButton.widthAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func configureViewCountLabel() {
+        viewsCountLabel.text = "0"
+        viewsCountLabel.isHidden = false
+        
+        viewsCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            viewsCountLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            viewsCountLabel.topAnchor.constraint(equalTo: newsImageView.bottomAnchor),
+            viewsCountLabel.widthAnchor.constraint(equalToConstant: 20)
         ])
     }
     
     private func configureBottomPart () {
+        let emptyView = UIView()
         
-        likeButton.setImage(UIImage(named: "emptyHeart"), for: .normal)
-        likeButton.clipsToBounds = true
-        likeButton.addTarget(self, action: #selector(likeButtonTapped(_:)), for: .touchUpInside)
-        likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(likeButtonPressedThroughGesture)))
-        
-        likeCountLabel.text = "0 like"
-        likeCountLabel.numberOfLines = 0
-        
-        let hStack = UIStackView(arrangedSubviews: [likeButton, likeCountLabel])
+        let hStack = UIStackView(arrangedSubviews: [likeButton, likeCountLabel, commentButton, shareButton, emptyView, eyeButton, viewsCountLabel])
         hStack.axis = .horizontal
         hStack.distribution = .fill
         hStack.isUserInteractionEnabled = true
@@ -117,6 +173,7 @@ class NewsCell: UITableViewCell {
     
     @objc private func likeButtonTapped(_ sender: UIButton) {
         isLiked.toggle()
+        tappedLikeButtonDelegate?.didTapLikeButton(photoIsLiked: isLiked)
         if isLiked {
             sender.setImage(UIImage(named: "fullHeart"), for: .normal)
         } else {
