@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
     
     /// Checks if the input infor matches the loginInfo
     private func displayLoginResult(infoIsCorrect check: Bool) {
-        loadKickAssAnimation()
+        loadLoginAnimation()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
             guard let self = self else { return }
@@ -79,14 +79,11 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func loadKickAssAnimation () {
-        
+    private func loadLoginAnimation () {
+        self.shapeLayer.isHidden            = false
+        self.trackLayer.isHidden            = false
         
         let center = view.center
-        
-        //Creating a layer behind the loading layer
-        
-        
         
         let circularPath = UIBezierPath(arcCenter: center, radius: 100, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         
@@ -95,12 +92,9 @@ class LoginViewController: UIViewController {
         trackLayer.strokeColor = UIColor.lightGray.cgColor
         trackLayer.fillColor = UIColor.white.cgColor
         trackLayer.lineWidth = 10
-        //trackLayer.lineCap = CAShapeLayerLineCap.round
                 
         shapeLayer.path = circularPath.cgPath
-        
         view.layer.addSublayer(trackLayer)
-        
         
         //Creating a loading layer
         shapeLayer.strokeColor = UIColor.systemBlue.cgColor
@@ -121,7 +115,6 @@ class LoginViewController: UIViewController {
         basicAnimation.isRemovedOnCompletion = false
         
         shapeLayer.add(basicAnimation, forKey: "urSoBasic")
-        
     }
     
     /// Configures the section which includes login and password sections + their labels
