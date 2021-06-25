@@ -20,9 +20,9 @@ class LoginViewController: UIViewController {
     private var correctLoginLabel = UILabel()
     private var loginButton = UIButton()
     private var loginInfo = ["":""]
-    let spinningAnimator = UIActivityIndicatorView()
     
-    
+    private let shapeLayer = CAShapeLayer()
+    private let trackLayer = CAShapeLayer()
 
     //MARK: - Lifecycle
     
@@ -40,16 +40,11 @@ class LoginViewController: UIViewController {
     @objc
     private func handleLogin(_ sender: UITapGestureRecognizer) {
         correctLoginLabel.alpha     = 0.0
-        spinningAnimator.alpha      = 1.0
-        spinningAnimator.center     = loginView.center
-        loginView.addSubview(spinningAnimator)
-        spinningAnimator.style      = .large
-        spinningAnimator.color      = .blue
         loginLabel.isHidden         = true
         loginTextField.isHidden     = true
         passwordLabel.isHidden      = true
         passwordTextField.isHidden  = true
-        spinningAnimator.startAnimating()
+        loginButton.isHidden        = true
         
         let inputInforDictionary = ["\(loginTextField.text ??  "")":"\(passwordTextField.text ?? "")"]
         
@@ -58,24 +53,75 @@ class LoginViewController: UIViewController {
     
     /// Checks if the input infor matches the loginInfo
     private func displayLoginResult(infoIsCorrect check: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {[weak self] in
+        loadKickAssAnimation()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
             guard let self = self else { return }
-            self.spinningAnimator.stopAnimating()
-            self.spinningAnimator.alpha         = 0 
-            self.loginLabel.isHidden                = false
-            self.loginTextField.isHidden            = false
-            self.passwordLabel.isHidden             = false
-            self.passwordTextField.isHidden         = false
             if check {
                 let tabBarVc                        = TabBarViewController()
                 tabBarVc.modalPresentationStyle     = .fullScreen
                 self.present(tabBarVc, animated: true, completion: nil)
             } else {
+                self.loginLabel.isHidden            = false
+                self.loginTextField.isHidden        = false
+                self.passwordLabel.isHidden         = false
+                self.passwordTextField.isHidden     = false
+                self.loginButton.isHidden           = false
+                
+                self.shapeLayer.isHidden            = true
+                self.trackLayer.isHidden            = true
+                
                 self.correctLoginLabel.alpha        = 1.0
                 self.correctLoginLabel.text         = "Wrong login/password"
                 self.correctLoginLabel.textColor    = .red
+                
             }
         }
+    }
+    
+    private func loadKickAssAnimation () {
+        
+        
+        let center = view.center
+        
+        //Creating a layer behind the loading layer
+        
+        
+        
+        let circularPath = UIBezierPath(arcCenter: center, radius: 100, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        
+        trackLayer.path = circularPath.cgPath
+        
+        trackLayer.strokeColor = UIColor.lightGray.cgColor
+        trackLayer.fillColor = UIColor.white.cgColor
+        trackLayer.lineWidth = 10
+        //trackLayer.lineCap = CAShapeLayerLineCap.round
+                
+        shapeLayer.path = circularPath.cgPath
+        
+        view.layer.addSublayer(trackLayer)
+        
+        
+        //Creating a loading layer
+        shapeLayer.strokeColor = UIColor.systemBlue.cgColor
+        shapeLayer.fillColor = UIColor.white.cgColor
+        shapeLayer.lineWidth = 10
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
+        
+        shapeLayer.strokeEnd = 0
+        
+        view.layer.addSublayer(shapeLayer)
+        
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        
+        basicAnimation.duration = 1
+        basicAnimation.toValue = 1
+        
+        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+        basicAnimation.isRemovedOnCompletion = false
+        
+        shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+        
     }
     
     /// Configures the section which includes login and password sections + their labels
