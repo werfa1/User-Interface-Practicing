@@ -11,7 +11,7 @@ class NewsTableVC: UITableViewController {
     
     //MARK: - Variables
     
-    private var newsList = ["news1", "news2", "news3"]
+    private var newsList = ["news1", "news2", "news3", "news4", "news5", "news6", "news7", "news8"]
     
     //MARK: - Lifecycle
 
@@ -39,19 +39,19 @@ extension NewsTableVC {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.identifier, for: indexPath) as! NewsCell
 
         cell.configure(with: UIImage(named: newsList[indexPath.row])!)
-        cell.tappedLikeButtonDelegate = self
+        //cell.tappedLikeButtonDelegate = self
         cell.likeButton.tag = indexPath.row
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+//        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-extension NewsTableVC: LikedButtonTappedDelegate {
-    func didTapLikeButton(photoIsLiked isLiked: Bool) {
-        print("The button is \(isLiked ? "liked" : "not liked")")
-    }
-}
+//extension NewsTableVC: LikedButtonTappedDelegate {
+//    func didTapLikeButton(photoIsLiked isLiked: Bool) {
+//        print("The button is \(isLiked ? "liked" : "not liked")")
+//    }
+//}

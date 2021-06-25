@@ -36,12 +36,15 @@ class NewsCell: UITableViewCell {
     
     private var viewsCountLabel = UILabel()
     
+    private let bottomButtonSize: CGFloat = 40
+    
     //MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         doUltimateConfiguration()
-        isUserInteractionEnabled = true
+//        isUserInteractionEnabled = false
+//        contentView.isUserInteractionEnabled = false
         self.clipsToBounds = true
         backgroundColor = .white
     }
@@ -85,7 +88,7 @@ class NewsCell: UITableViewCell {
         
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            likeButton.widthAnchor.constraint(equalToConstant: 50),
+            likeButton.widthAnchor.constraint(equalToConstant: bottomButtonSize),
             likeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             likeButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             likeButton.topAnchor.constraint(equalTo: newsImageView.bottomAnchor)
@@ -94,7 +97,7 @@ class NewsCell: UITableViewCell {
     
     private func configureLikeCountLabel () {
         //Setting like count label
-        likeCountLabel.text = "0 like"
+        likeCountLabel.text = ""
         likeCountLabel.numberOfLines = 0
         likeCountLabel.isHidden = true
         
@@ -103,7 +106,7 @@ class NewsCell: UITableViewCell {
             likeCountLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             likeCountLabel.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor),
             likeCountLabel.topAnchor.constraint(equalTo: newsImageView.bottomAnchor),
-            likeCountLabel.widthAnchor.constraint(equalToConstant: 50)
+            likeCountLabel.widthAnchor.constraint(equalToConstant: 15)
         ])
     }
     
@@ -114,7 +117,7 @@ class NewsCell: UITableViewCell {
         NSLayoutConstraint.activate([
             commentButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             commentButton.topAnchor.constraint(equalTo: newsImageView.bottomAnchor),
-            commentButton.widthAnchor.constraint(equalToConstant: 50)
+            commentButton.widthAnchor.constraint(equalToConstant: bottomButtonSize)
         ])
     }
     
@@ -126,7 +129,7 @@ class NewsCell: UITableViewCell {
             shareButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             shareButton.leadingAnchor.constraint(equalTo: commentButton.trailingAnchor),
             shareButton.topAnchor.constraint(equalTo: newsImageView.bottomAnchor),
-            shareButton.widthAnchor.constraint(equalToConstant: 50)
+            shareButton.widthAnchor.constraint(equalToConstant: bottomButtonSize)
         ])
     }
     
@@ -137,13 +140,12 @@ class NewsCell: UITableViewCell {
         NSLayoutConstraint.activate([
             eyeButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             eyeButton.topAnchor.constraint(equalTo: newsImageView.bottomAnchor),
-            eyeButton.widthAnchor.constraint(equalToConstant: 50)
+            eyeButton.widthAnchor.constraint(equalToConstant: bottomButtonSize)
         ])
     }
     
     private func configureViewCountLabel() {
         viewsCountLabel.text = "0"
-        viewsCountLabel.isHidden = false
         
         viewsCountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -161,7 +163,7 @@ class NewsCell: UITableViewCell {
         hStack.distribution = .fill
         hStack.isUserInteractionEnabled = true
                 
-        self.addSubview(hStack)
+        contentView.addSubview(hStack)
         
         hStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -174,25 +176,17 @@ class NewsCell: UITableViewCell {
     @objc private func likeButtonTapped(_ sender: UIButton) {
         isLiked.toggle()
         tappedLikeButtonDelegate?.didTapLikeButton(photoIsLiked: isLiked)
-        if isLiked {
-            sender.setImage(UIImage(named: "fullHeart"), for: .normal)
-        } else {
-            sender.setImage(UIImage(named: "emptyHeart"), for: .normal)
+        UIView.animate(withDuration: 0.3) {
+            if self.isLiked {
+                self.likeCountLabel.isHidden = false
+                sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                self.likeCountLabel.text = "1"
+            } else {
+                self.likeCountLabel.isHidden = true
+                sender.setImage(UIImage(systemName: "heart"), for: .normal)
+                self.likeCountLabel.text = ""
+            }
         }
-        
-        likeCountLabel.text = isLiked ? "1 like": "0 like"
-    }
-    
-    @objc private func likeButtonPressedThroughGesture (_ sender: UITapGestureRecognizer) {
-        isLiked.toggle()
-        guard let likeButton = sender.view as? UIButton else { return }
-        if isLiked {
-            likeButton.setImage(UIImage(named: "fullHeart"), for: .normal)
-        } else {
-            likeButton.setImage(UIImage(named: "emptyHeart"), for: .normal)
-        }
-        
-        likeCountLabel.text = isLiked ? "1 like": "0 like"
     }
     
     func configure(with image: UIImage) {
@@ -202,4 +196,9 @@ class NewsCell: UITableViewCell {
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
+    
+    override func prepareForReuse() {
+        viewsCountLabel.text = "\(Int(viewsCountLabel.text!)! + 1)"
+    }
 }
+
