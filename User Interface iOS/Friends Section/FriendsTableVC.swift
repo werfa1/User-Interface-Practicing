@@ -24,14 +24,14 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     
     var isSearching: Bool = false
     
-    var allPhotos = ["random-dude", "random-dude-2", "random-woman", "random-woman-2", "jason", "lilly", "jack"]
+    var allPhotos = ["random-dude", "random-dude-2", "emma", "random-woman-2", "jason", "lilly", "jack"]
     
     private var firstLettersForHeaders = [String]()
     
     //Data source
     private var friendList = [Friend(friendName: "Ivan Ivanov", friendProfilePicture: "random-dude"),
                       Friend(friendName: "Gayl Ord", friendProfilePicture: "random-dude-2"),
-                      Friend(friendName: "Joe Mama", friendProfilePicture: "random-woman"),
+                      Friend(friendName: "Emma Watson", friendProfilePicture: "emma"),
                       Friend(friendName: "Dagny Taghart", friendProfilePicture: "random-woman-2"),
                       Friend(friendName: "Jason Statham", friendProfilePicture: "jason"),
                       Friend(friendName: "Lilly Collins", friendProfilePicture: "lilly"),

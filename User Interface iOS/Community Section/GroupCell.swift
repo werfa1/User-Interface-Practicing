@@ -78,23 +78,33 @@ class GroupCell: UITableViewCell {
                     let scale = CGAffineTransform(scaleX: 1.1, y: 1.1)
                     self.groupProfilePic.transform = scale
                 } completion: { _ in
-                    UIView.animate(withDuration: 0.3) {
+                    UIView.animate(withDuration: 0.2) {
                         let scale = CGAffineTransform(scaleX: 0.9, y: 0.9)
                         self.groupProfilePic.transform = scale
                     } completion: { _ in
-                        UIView.animate(withDuration: 0.3) {
+                        UIView.animate(withDuration: 0.2) {
                             let scale = CGAffineTransform(scaleX: 1.05, y: 1.05)
                             self.groupProfilePic.transform = scale
                         } completion: { _ in
-                            UIView.animate(withDuration: 0.3) {
+                            UIView.animate(withDuration: 0.1) {
                                 let scale = CGAffineTransform(scaleX: 0.95, y: 0.95)
                                 self.groupProfilePic.transform = scale
                             } completion: { _ in
-                                UIView.animate(withDuration: 0.3) {
-                                    let scale = CGAffineTransform(scaleX: 1, y: 1)
+                                UIView.animate(withDuration: 0.1) {
+                                    let scale = CGAffineTransform(scaleX: 1.025, y: 1.025)
                                     self.groupProfilePic.transform = scale
+                                } completion: { _ in
+                                    UIView.animate(withDuration: 0.1) {
+                                        let scale = CGAffineTransform(scaleX: 0.975, y: 0.975)
+                                        self.groupProfilePic.transform = scale
+                                    } completion: { _ in
+                                        UIView.animate(withDuration: 0.1) {
+                                            let scale = CGAffineTransform(scaleX: 1, y: 1)
+                                            self.groupProfilePic.transform = scale
+                                        }
+                                    }
                                 }
-                            }
+                            } 
                         }
                     }
                 }
