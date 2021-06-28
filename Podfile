@@ -8,5 +8,6 @@ target 'User Interface iOS' do
   # Pods for User Interface iOS
 
   pod 'Gemini'
+ pod 'ViewAnimator'
 
 end

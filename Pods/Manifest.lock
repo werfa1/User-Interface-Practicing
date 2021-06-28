@@ -1,16 +1,20 @@
 PODS:
   - Gemini (1.4.0)
+  - ViewAnimator (3.1.0)
 
 DEPENDENCIES:
   - Gemini
+  - ViewAnimator
 
 SPEC REPOS:
   trunk:
     - Gemini
+    - ViewAnimator
 
 SPEC CHECKSUMS:
   Gemini: 4ad915cca8805577fe3021e02feeca2b77dcdbfc
+  ViewAnimator: a9ceed80266e00fd435ec4fb99b2df64d580d0e4
 
-PODFILE CHECKSUM: 2109c7c41edd0a041392c6eabeacb42d53e6d507
+PODFILE CHECKSUM: c7424733ce8c949d75e553eb6ed06791e4f16879
 
 COCOAPODS: 1.10.1

@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-User Interface iOS/Pods-User Interface iOS-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Gemini/Gemini.framework
+${BUILT_PRODUCTS_DIR}/ViewAnimator/ViewAnimator.framework

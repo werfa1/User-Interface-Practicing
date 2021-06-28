@@ -45,12 +45,9 @@ class PhotoCollectionVC: UICollectionViewController {
         
         //Gemini animation
         (collectionView as! GeminiCollectionView).gemini
-                .customAnimation()
-                .translation(x: 0, y: 50, z: 0)
-                .rotationAngle(x: 0, y: 13, z: 0)
-                .ease(.easeOutExpo)
-                .shadowEffect(.fadeIn)
-                .maxShadowAlpha(0.3)
+                .scaleAnimation()
+                .scale(0.75)
+                .scaleEffect(.scaleUp)
     }
 }
 
