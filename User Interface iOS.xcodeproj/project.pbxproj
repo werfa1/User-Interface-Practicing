@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,7 @@
 		06CEB706267CAE7E003F5949 /* GlobalSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CEB705267CAE7E003F5949 /* GlobalSearchCell.swift */; };
 		06CEB709267CFB3A003F5949 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CEB708267CFB3A003F5949 /* Friend.swift */; };
 		06CEB70B267CFBCA003F5949 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CEB70A267CFBCA003F5949 /* Group.swift */; };
+		06E3E4CF268A27060003D961 /* AnimatorClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E3E4CE268A27060003D961 /* AnimatorClasses.swift */; };
 		799E24AEDAB116A51024870D /* Pods_User_Interface_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1248788AD99D991A4144D2 /* Pods_User_Interface_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		06CEB705267CAE7E003F5949 /* GlobalSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchCell.swift; sourceTree = "<group>"; };
 		06CEB708267CFB3A003F5949 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		06CEB70A267CFBCA003F5949 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		06E3E4CE268A27060003D961 /* AnimatorClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorClasses.swift; sourceTree = "<group>"; };
 		090695890ED14D8724A9882A /* Pods-User Interface iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-User Interface iOS.release.xcconfig"; path = "Target Support Files/Pods-User Interface iOS/Pods-User Interface iOS.release.xcconfig"; sourceTree = "<group>"; };
 		3F1248788AD99D991A4144D2 /* Pods_User_Interface_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_User_Interface_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F888168A04980D3E4C5914 /* Pods-User Interface iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-User Interface iOS.debug.xcconfig"; path = "Target Support Files/Pods-User Interface iOS/Pods-User Interface iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				06634990267B8AE1004B0812 /* FriendsTableVC.swift */,
+				06E3E4CE268A27060003D961 /* AnimatorClasses.swift */,
 				06634992267B8D07004B0812 /* FriendCell.swift */,
 				06634995267B8FEA004B0812 /* PhotoCollectionVC.swift */,
 				066CB2732680909F00B7777E /* PhotoCell.swift */,
@@ -231,7 +234,6 @@
 				78F888168A04980D3E4C5914 /* Pods-User Interface iOS.debug.xcconfig */,
 				090695890ED14D8724A9882A /* Pods-User Interface iOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -420,6 +422,7 @@
 				06CEB706267CAE7E003F5949 /* GlobalSearchCell.swift in Sources */,
 				0697CEB22678EF370013BCE7 /* AppDelegate.swift in Sources */,
 				06CEB70B267CFBCA003F5949 /* Group.swift in Sources */,
+				06E3E4CF268A27060003D961 /* AnimatorClasses.swift in Sources */,
 				0697CEB42678EF370013BCE7 /* SceneDelegate.swift in Sources */,
 				06634991267B8AE1004B0812 /* FriendsTableVC.swift in Sources */,
 				06644E9D2684D57700E2537C /* NewsCell.swift in Sources */,

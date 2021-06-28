@@ -50,6 +50,11 @@ class PhotoCollectionVC: UICollectionViewController {
                 .scale(0.75)
                 .scaleEffect(.scaleUp)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //UICollectionView.animate(views: [collectionView], animations:  [AnimationType.from(direction: .top, offset: 100)], duration: 1)
+    }
 }
 
 //MARK: - Extension
@@ -107,3 +112,17 @@ extension PhotoCollectionVC: UICollectionViewDelegateFlowLayout {
 }
 
 
+
+extension PhotoCollectionVC: UINavigationControllerDelegate {
+    func navigationController(
+        _ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch operation {
+        case .push:
+            return CustomPushAnimator()
+        case .pop:
+            return CustomPopAnimator()
+        default:
+            return nil
+        }
+    }
+}

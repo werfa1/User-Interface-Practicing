@@ -13,7 +13,6 @@ protocol FriendSelectionDelegate {
     func didSelectFriend (profilePic: String)
 }
 
-
 class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     
     // MARK: - UI Components -
@@ -58,8 +57,10 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
         
         //Sorting list of friends
         friendList = friendList.sorted { $0.friendName.localizedCaseInsensitiveCompare($1.friendName) == ComparisonResult.orderedAscending }
-
         sortedFriendList = friendList
+        
+        //Custom transitioning delegate
+        navigationController?.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,9 +68,8 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
         if isAppearingFirstTime {
             UITableView.animate(views: tableView.visibleCells, animations: [AnimationType.from(direction: .top, offset: 100)])
             isAppearingFirstTime.toggle()
-        }    }
-    
-    
+        }
+    }
     
     //MARK: - Functions
     
@@ -122,9 +122,7 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     private func configureSearchBar () {
         
         titleLabel = UILabel()
-        
         titleLabel.text = title
-        
         searchBar = UISearchBar()
         searchBar.placeholder = "Search"
         searchBar.isHidden = true
@@ -167,7 +165,6 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
         }
         self.tableView.reloadData()
     }
-    
 }
 
 //MARK: - Extensions
@@ -233,5 +230,23 @@ extension String {
         return String(firstLetter)
     }
 }
+
+extension FriendsTableVC: UINavigationControllerDelegate {
+    func navigationController(
+        _ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch operation {
+        case .push:
+            return CustomPushAnimator()
+        case .pop:
+            return CustomPopAnimator()
+        default:
+            return nil
+        } 
+    }
+}
+
+
+
+
 
 
