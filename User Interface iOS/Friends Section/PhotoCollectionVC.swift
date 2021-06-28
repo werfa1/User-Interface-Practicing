@@ -14,11 +14,13 @@ protocol NewProfilePicDelegate: AnyObject {
 }
 
 class PhotoCollectionVC: UICollectionViewController {
+    
+    
     //MARK: - Variables
     
     var selectedFriendProfilePic = [String]()
     
-    private var photoCollectionView: GeminiCollectionView!
+    //private var photoCollectionView: GeminiCollectionView?
     
     weak var newProfilePicDelegate: NewProfilePicDelegate?
     
@@ -30,10 +32,25 @@ class PhotoCollectionVC: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView!.register(PhotoCell.nib(), forCellWithReuseIdentifier: PhotoCell.identifier)
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.backgroundColor = .white
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        collectionView = GeminiCollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        collectionView!.register(PhotoCell.nib(), forCellWithReuseIdentifier: PhotoCell.identifier)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .white
+        
+        //Gemini animation
+        (collectionView as! GeminiCollectionView).gemini
+                .customAnimation()
+                .translation(x: 0, y: 50, z: 0)
+                .rotationAngle(x: 0, y: 13, z: 0)
+                .ease(.easeOutExpo)
+                .shadowEffect(.fadeIn)
+                .maxShadowAlpha(0.3)
     }
 }
 
@@ -54,6 +71,8 @@ extension PhotoCollectionVC {
         cell.contentView.contentMode = .scaleAspectFill
         cell.configure(with: UIImage(named: selectedFriendProfilePic[indexPath.row])!)
         
+        (collectionView as! GeminiCollectionView).animateCell(cell)
+        
         return cell
     }
     
@@ -69,12 +88,24 @@ extension PhotoCollectionVC {
             selectedCell?.layer.cornerRadius = 0
         }
     }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        (collectionView as! GeminiCollectionView).animateVisibleCells()
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let cell = cell as? PhotoCell {
+            (collectionView as! GeminiCollectionView).animateCell(cell)
+        }
+    }
 }
 
 extension PhotoCollectionVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = view.frame.size.width
-        let cellHeight = view.safeAreaLayoutGuide.layoutFrame.height * 0.9 //- view.safeAreaInsets.bottom 
+        let cellHeight = view.safeAreaLayoutGuide.layoutFrame.height * 0.9
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }
+
+
