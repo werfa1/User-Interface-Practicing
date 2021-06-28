@@ -1,0 +1,16 @@
+PODS:
+  - Gemini (1.4.0)
+
+DEPENDENCIES:
+  - Gemini
+
+SPEC REPOS:
+  trunk:
+    - Gemini
+
+SPEC CHECKSUMS:
+  Gemini: 4ad915cca8805577fe3021e02feeca2b77dcdbfc
+
+PODFILE CHECKSUM: 2109c7c41edd0a041392c6eabeacb42d53e6d507
+
+COCOAPODS: 1.10.1
