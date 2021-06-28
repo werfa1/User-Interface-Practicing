@@ -80,11 +80,10 @@ class PhotoCell: UICollectionViewCell {
     
     @objc private func likeButtonTapped(_ sender: UIButton) {
         isLiked.toggle()
+        sender.tintColor = isLiked ? .systemRed : .systemBlue
         if isLiked {
-            //sender.setImage(UIImage(named: "fullHeart"), for: .normal)
             sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
-//            sender.setImage(UIImage(named: "emptyHeart"), for: .normal)
             sender.setImage(UIImage(systemName: "heart"), for: .normal)
         }
         

@@ -182,7 +182,9 @@ class NewsCell: UITableViewCell {
     
     @objc private func likeButtonTapped(_ sender: UIButton) {
         isLiked.toggle()
-        UIView.animate(withDuration: 0.3) {
+        sender.tintColor = isLiked ? .systemRed : .systemBlue
+
+        UIView.animate(withDuration: 0.4) {
             if self.isLiked {
                 self.likeCountLabel.isHidden = false
                 sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
