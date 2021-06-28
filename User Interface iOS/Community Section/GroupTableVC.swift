@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ViewAnimator
 
 class GroupTableVC: UITableViewController, UISearchBarDelegate {
     
@@ -15,7 +16,11 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
     private var globalGroupBarButton = UIBarButtonItem()
     private var groupSearchBar = UISearchBar()
     
+    /// Checks if the user is started searching
     private var isSearching = false
+    
+    /// Checks if the view appears for the first time in the app lifetime
+    private var isAppearingFirstTime = true
     
     /// DataSource of user's groups
     private var groupsList = [Group(groupName: "Dark Souls", groupProfilePic: "darkSouls"),
@@ -54,6 +59,14 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
         navigationItem.leftBarButtonItem = configureGlobalGroupButton()
         configureSearchBar()
         groupSearchBar.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if isAppearingFirstTime {
+            UITableView.animate(views: tableView.visibleCells, animations: [AnimationType.from(direction: .top, offset: 100)])
+            isAppearingFirstTime.toggle()
+        }
     }
     
     //MARK: - Functions

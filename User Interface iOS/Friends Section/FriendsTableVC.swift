@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ViewAnimator
 
 //MARK: - Protocols
 protocol FriendSelectionDelegate {
@@ -22,7 +23,11 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     
     //MARK: - Variables
     
-    var isSearching: Bool = false
+    /// Checks if the user is started searching
+    var isSearching = false
+    
+    /// Checks if the view appears for the first time in the app lifetime
+    private var isAppearingFirstTime = true
     
     var allPhotos = ["random-dude", "random-dude-2", "emma", "random-woman-2", "jason", "lilly", "jack"]
     
@@ -56,6 +61,13 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
 
         sortedFriendList = friendList
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if isAppearingFirstTime {
+            UITableView.animate(views: tableView.visibleCells, animations: [AnimationType.from(direction: .top, offset: 100)])
+            isAppearingFirstTime.toggle()
+        }    }
     
     
     

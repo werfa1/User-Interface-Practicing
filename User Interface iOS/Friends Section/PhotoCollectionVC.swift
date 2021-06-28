@@ -7,6 +7,7 @@
 
 import UIKit
 import Gemini
+import ViewAnimator
 
 
 protocol NewProfilePicDelegate: AnyObject {
