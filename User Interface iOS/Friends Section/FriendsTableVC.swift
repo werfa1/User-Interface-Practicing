@@ -48,9 +48,16 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
         tableView.dataSource = self
         configureSearchBar()
         searchBar.delegate = self
-        sortedFriendList = friendList
+        
         self.tableView.keyboardDismissMode = .onDrag
+        
+        //Sorting list of friends
+        friendList = friendList.sorted { $0.friendName.localizedCaseInsensitiveCompare($1.friendName) == ComparisonResult.orderedAscending }
+
+        sortedFriendList = friendList
     }
+    
+    
     
     //MARK: - Functions
     
@@ -74,6 +81,8 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     
     //TableView assistant functions
     private func returnNumberOfSections() -> Int {
+        
+        //Getting first letters of each name in frined list
         firstLettersForHeaders = []
         sortedFriendList.forEach { [weak self] item in
             guard let self = self else { return }
@@ -167,8 +176,6 @@ extension FriendsTableVC {
             friend.friendName.firstLetter() == firstLettersForHeaders[indexPath.section]
         }
         
-        //cell.userName.tag
-        
         cell.configureCell(WithUser: sortedArray[indexPath.row])
         
         return cell
@@ -183,7 +190,8 @@ extension FriendsTableVC {
         let photoCollectionVC = PhotoCollectionVC(collectionViewLayout: layout)
         photoCollectionVC.selectedFriendProfilePic = allPhotos
         photoCollectionVC.newProfilePicDelegate = self
-        photoCollectionVC.pickedFriend = indexPath.row
+        photoCollectionVC.pickedFriend[0] = indexPath.section
+        photoCollectionVC.pickedFriend[1] = indexPath.row
         navigationController?.pushViewController(photoCollectionVC, animated: true)
     }
     
@@ -193,8 +201,16 @@ extension FriendsTableVC {
 }
 
 extension FriendsTableVC: NewProfilePicDelegate {
-    func setNewProfilePic(withImage image: String, forUser user: Int) {
-        sortedFriendList[user].friendProfilePicture = image
+    func setNewProfilePic(withImage image: String, inSection section: Int, forUser user: Int) {
+        let sortedArray = sortedFriendList.filter { friend in
+            friend.friendName.firstLetter() == firstLettersForHeaders[section]
+        }
+        for userInTotalListOfFriends in friendList.indices {
+            if friendList[userInTotalListOfFriends] == sortedArray[user] {
+                sortedFriendList[userInTotalListOfFriends].friendProfilePicture = image
+                break
+            }
+        }
         tableView.reloadData()
     }
 }
@@ -205,3 +221,5 @@ extension String {
         return String(firstLetter)
     }
 }
+
+

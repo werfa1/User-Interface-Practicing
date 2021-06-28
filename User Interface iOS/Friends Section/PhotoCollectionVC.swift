@@ -9,7 +9,7 @@ import UIKit
 
 
 protocol NewProfilePicDelegate: AnyObject {
-    func setNewProfilePic (withImage image: String, forUser userIndex: Int)
+    func setNewProfilePic (withImage image: String, inSection section: Int, forUser userIndex: Int)
 }
 
 class PhotoCollectionVC: UICollectionViewController {
@@ -21,7 +21,7 @@ class PhotoCollectionVC: UICollectionViewController {
     
     weak var newProfilePicDelegate: NewProfilePicDelegate?
     
-    var pickedFriend = -1
+    var pickedFriend = [-1, -1]
 
     
     //MARK: - Lifecycle
@@ -33,10 +33,6 @@ class PhotoCollectionVC: UICollectionViewController {
         self.collectionView.dataSource = self
         self.collectionView.backgroundColor = .white
     }
-    
-    //MARK: - Functions
-    
-    
 }
 
 //MARK: - Extension
@@ -64,7 +60,7 @@ extension PhotoCollectionVC {
         selectedCell?.layer.borderWidth = 3
         selectedCell?.layer.borderColor = UIColor.green.cgColor
         selectedCell?.layer.cornerRadius = 10
-        newProfilePicDelegate?.setNewProfilePic(withImage: selectedFriendProfilePic[indexPath.row], forUser: pickedFriend)
+        newProfilePicDelegate?.setNewProfilePic(withImage: selectedFriendProfilePic[indexPath.row], inSection: pickedFriend[0], forUser: pickedFriend[1])
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             selectedCell?.layer.borderWidth = 0
             selectedCell?.layer.borderColor = UIColor.clear.cgColor
