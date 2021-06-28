@@ -184,7 +184,7 @@ extension FriendsTableVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 5, right: 8)
         
         let photoCollectionVC = PhotoCollectionVC(collectionViewLayout: layout)

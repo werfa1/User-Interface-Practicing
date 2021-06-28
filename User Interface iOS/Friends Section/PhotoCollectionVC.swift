@@ -21,6 +21,7 @@ class PhotoCollectionVC: UICollectionViewController {
     
     weak var newProfilePicDelegate: NewProfilePicDelegate?
     
+    /// Variable that holds picked friend's section and row 
     var pickedFriend = [-1, -1]
 
     
@@ -71,8 +72,8 @@ extension PhotoCollectionVC {
 
 extension PhotoCollectionVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = view.frame.size.width * 0.8
-        let cellHeight = cellWidth / 0.75
+        let cellWidth = view.frame.size.width
+        let cellHeight = view.safeAreaLayoutGuide.layoutFrame.height * 0.9 //- view.safeAreaInsets.bottom 
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }
