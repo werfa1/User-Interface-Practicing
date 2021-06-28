@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Gemini
 
-class PhotoCell: UICollectionViewCell {
+class PhotoCell: GeminiCell {
     
     //MARK: - Variables
     

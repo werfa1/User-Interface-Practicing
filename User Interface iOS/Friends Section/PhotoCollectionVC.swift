@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Gemini
 
 
 protocol NewProfilePicDelegate: AnyObject {
@@ -17,7 +18,7 @@ class PhotoCollectionVC: UICollectionViewController {
     
     var selectedFriendProfilePic = [String]()
     
-    private var photoCollectionView: UICollectionView!
+    private var photoCollectionView: GeminiCollectionView!
     
     weak var newProfilePicDelegate: NewProfilePicDelegate?
     
