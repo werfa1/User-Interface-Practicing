@@ -60,6 +60,56 @@ class CustomPopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     }
 }
 
+/// Class for UIScreenEdgePanGestureRecognizer
+class CustomInteractivrTransition: UIPercentDrivenInteractiveTransition, UIGestureRecognizerDelegate {
+    
+    var hasStarted: Bool = false
+    var shouldFinish: Bool = false
+    var viewController: UIViewController? {
+        didSet {
+            let recognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePanGesture(recognizer:)))
+            recognizer.edges = .left
+            recognizer.delegate = self
+            viewController?.view.addGestureRecognizer(recognizer)
+            
+//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+//            viewController?.view.addGestureRecognizer(tapGesture)
+        }
+    }
+    
+    @objc
+    private func handleTap(_ sender: UITapGestureRecognizer) {
+        print("tapped")
+    }
+    
+    @objc
+    private func handleEdgePanGesture (recognizer: UIScreenEdgePanGestureRecognizer) {
+        print("left edge trigger")
+        switch recognizer.state {
+        case .began:
+            self.hasStarted = true
+            self.viewController?.navigationController?.popViewController(animated: true)
+        case .changed:
+            let translation = recognizer.translation(in: recognizer.view)
+            let relativeTranslation = translation.x / (recognizer.view?.bounds.width ?? 1)
+            let progress = max(0, min(1, relativeTranslation))
+            
+            self.shouldFinish = progress > 0.33
+            
+            self.update(progress)
+        case .ended:
+            self.hasStarted = false
+            self.finish()
+            recognizer.view?.setNeedsLayout()
+        case .cancelled:
+            self.hasStarted = false
+            self.cancel()
+        default:
+            return
+        }
+    }
+}
+
 //MARK: - Extensions
 extension UIView{
     func setAnchorPoint(anchorPoint: CGPoint) {

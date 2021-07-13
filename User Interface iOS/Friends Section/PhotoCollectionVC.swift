@@ -35,7 +35,7 @@ class PhotoCollectionVC: UICollectionViewController {
         super.viewDidLoad()
         
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         
         collectionView = GeminiCollectionView(frame: .zero, collectionViewLayout: layout)
         
@@ -49,11 +49,6 @@ class PhotoCollectionVC: UICollectionViewController {
                 .scaleAnimation()
                 .scale(0.75)
                 .scaleEffect(.scaleUp)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //UICollectionView.animate(views: [collectionView], animations:  [AnimationType.from(direction: .top, offset: 100)], duration: 1)
     }
 }
 

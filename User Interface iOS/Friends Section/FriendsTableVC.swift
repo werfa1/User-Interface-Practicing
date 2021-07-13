@@ -8,7 +8,7 @@
 import UIKit
 import ViewAnimator
 
-//MARK: - Protocols
+//MARK: - Delegate
 protocol FriendSelectionDelegate {
     func didSelectFriend (profilePic: String)
 }
@@ -21,6 +21,8 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     var searchBar: UISearchBar!
     
     //MARK: - Variables
+    
+    let interactiveTransition = CustomInteractivrTransition()
     
     /// Checks if the user is started searching
     var isSearching = false
@@ -193,7 +195,7 @@ extension FriendsTableVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 5, right: 8)
         
         let photoCollectionVC = PhotoCollectionVC(collectionViewLayout: layout)
@@ -202,6 +204,10 @@ extension FriendsTableVC {
         photoCollectionVC.pickedFriend[0] = indexPath.section
         photoCollectionVC.pickedFriend[1] = indexPath.row
         navigationController?.pushViewController(photoCollectionVC, animated: true)
+        
+//        let testVC = UIViewController()
+//        testVC.view.backgroundColor = .orange
+//        navigationController?.pushViewController(testVC, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -236,17 +242,20 @@ extension FriendsTableVC: UINavigationControllerDelegate {
         _ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         switch operation {
         case .push:
+            self.interactiveTransition.viewController = toVC
             return CustomPushAnimator()
         case .pop:
+            if navigationController.viewControllers.first != toVC {
+                self.interactiveTransition.viewController = toVC
+            }
             return CustomPopAnimator()
         default:
             return nil
         } 
     }
+    
+    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactiveTransition.hasStarted ? interactiveTransition : nil
+    }
 }
-
-
-
-
-
 
