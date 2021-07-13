@@ -217,11 +217,14 @@ extension FriendsTableVC {
 
 extension FriendsTableVC: NewProfilePicDelegate {
     func setNewProfilePic(withImage image: String, inSection section: Int, forUser user: Int) {
+        
+        //Getting a sorted array of friends with the same first letter in name
         let sortedArray = sortedFriendList.filter { friend in
             friend.friendName.firstLetter() == firstLettersForHeaders[section]
         }
+        
         for userInTotalListOfFriends in friendList.indices {
-            if friendList[userInTotalListOfFriends] == sortedArray[user] {
+            if sortedFriendList[userInTotalListOfFriends] == sortedArray[user] {
                 sortedFriendList[userInTotalListOfFriends].friendProfilePicture = image
                 break
             }
