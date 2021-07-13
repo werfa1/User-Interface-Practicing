@@ -12,15 +12,24 @@ class LoginViewController: UIViewController {
     //MARK: - Variables
     
     private var loginView = UIView()
+    
     private var loginLabel = UILabel()
+    
     private var titleLabel = UILabel()
+    
     private var passwordLabel = UILabel()
+    
     private var loginTextField = UITextField()
+    
     private var passwordTextField = UITextField()
+    
     private var correctLoginLabel = UILabel()
+    
     private var loginButton = UIButton()
+    
     private var loginInfo = ["":""]
     
+    //Layers for loading animation
     private let shapeLayer = CAShapeLayer()
     private let trackLayer = CAShapeLayer()
 

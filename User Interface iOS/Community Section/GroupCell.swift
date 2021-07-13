@@ -12,8 +12,8 @@ class GroupCell: UITableViewCell {
     //MARK: - Variables
     static let identifier = "GroupCell"
 
-    var groupName = UILabel()
-    var groupProfilePic = UIImageView()
+    private var groupName       = UILabel()
+    private var groupProfilePic = UIImageView()
     
     //MARK: - Initializers
     

@@ -17,49 +17,49 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     
     // MARK: - UI Components -
     
-    var titleLabel: UILabel!
-    var searchBar: UISearchBar!
+    private var titleLabel: UILabel!
+    private var searchBar: UISearchBar!
     
     //MARK: - Variables
     
     private let interactiveTransition = CustomInteractivrTransition()
     
     /// Checks if the user is started searching
-    private var isSearching = false
+    private var isSearching             = false
     
     /// Checks if the view appears for the first time in the app lifetime
-    private var isAppearingFirstTime = true
+    private var isAppearingFirstTime    = true
     
-    private var allPhotos = ["random-dude", "random-dude-2", "emma", "random-woman-2", "jason", "lilly", "jack"]
+    private var allPhotos               = ["random-dude", "random-dude-2", "emma", "random-woman-2", "jason", "lilly", "jack"]
     
-    private var firstLettersForHeaders = [String]()
+    private var firstLettersForHeaders  = [String]()
     
     //Data source
-    private var friendList = [Friend(friendName: "Ivan Ivanov", friendProfilePicture: "random-dude"),
-                      Friend(friendName: "Gayl Ord", friendProfilePicture: "random-dude-2"),
-                      Friend(friendName: "Emma Watson", friendProfilePicture: "emma"),
-                      Friend(friendName: "Dagny Taghart", friendProfilePicture: "random-woman-2"),
-                      Friend(friendName: "Jason Statham", friendProfilePicture: "jason"),
-                      Friend(friendName: "Lilly Collins", friendProfilePicture: "lilly"),
-                      Friend(friendName: "Jack Black", friendProfilePicture: "jack")]
+    private var friendList              = [Friend(friendName: "Ivan Ivanov", friendProfilePicture: "random-dude"),
+                                           Friend(friendName: "Gayl Ord", friendProfilePicture: "random-dude-2"),
+                                           Friend(friendName: "Emma Watson", friendProfilePicture: "emma"),
+                                           Friend(friendName: "Dagny Taghart", friendProfilePicture: "random-woman-2"),
+                                           Friend(friendName: "Jason Statham", friendProfilePicture: "jason"),
+                                           Friend(friendName: "Lilly Collins", friendProfilePicture: "lilly"),
+                                           Friend(friendName: "Jack Black", friendProfilePicture: "jack")]
     
-    private var sortedFriendList = [Friend]()
+    private var sortedFriendList        = [Friend]()
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(FriendCell.self, forCellReuseIdentifier: FriendCell.identifier)
-        tableView.rowHeight = UIScreen.main.bounds.height * 0.15
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.rowHeight     = UIScreen.main.bounds.height * 0.15
+        tableView.delegate      = self
+        tableView.dataSource    = self
         configureSearchBar()
-        searchBar.delegate = self
+        searchBar.delegate      = self
         
         self.tableView.keyboardDismissMode = .onDrag
         
         //Sorting list of friends
-        friendList = friendList.sorted { $0.friendName.localizedCaseInsensitiveCompare($1.friendName) == ComparisonResult.orderedAscending }
-        sortedFriendList = friendList
+        friendList              = friendList.sorted { $0.friendName.localizedCaseInsensitiveCompare($1.friendName) == ComparisonResult.orderedAscending }
+        sortedFriendList        = friendList
         
         //Custom transitioning delegate
         navigationController?.delegate = self
@@ -88,21 +88,21 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = self.deleteRow(rowAtIndexPath: indexPath)
-        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        let delete  = self.deleteRow(rowAtIndexPath: indexPath)
+        let swipe   = UISwipeActionsConfiguration(actions: [delete])
         return swipe
     }
     
     //MARK: - Configuring UI
     private func configureSearchBar () {
         
-        titleLabel = UILabel()
-        titleLabel.text = title
-        searchBar = UISearchBar()
-        searchBar.placeholder = "Search"
-        searchBar.isHidden = true
+        titleLabel              = UILabel()
+        titleLabel.text         = title
+        searchBar               = UISearchBar()
+        searchBar.placeholder   = "Search"
+        searchBar.isHidden      = true
         
-        let screenWidth = UIScreen.main.bounds.width
+        let screenWidth         = UIScreen.main.bounds.width
         
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -121,8 +121,8 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     private func handleSearchButtonTap() {
         isSearching.toggle()
         UIView.animate(withDuration: 0.3) {
-            self.titleLabel.isHidden = self.isSearching
-            self.searchBar.isHidden = !self.isSearching
+            self.titleLabel.isHidden    = self.isSearching
+            self.searchBar.isHidden     = !self.isSearching
         }
     }
     
@@ -198,14 +198,14 @@ extension FriendsTableVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 5, right: 8)
+        layout.scrollDirection              = .vertical
+        layout.sectionInset                 = UIEdgeInsets(top: 0, left: 8, bottom: 5, right: 8)
         
         let photoCollectionVC = PhotoCollectionVC(collectionViewLayout: layout)
         photoCollectionVC.selectedFriendProfilePic = allPhotos
         photoCollectionVC.newProfilePicDelegate = self
-        photoCollectionVC.pickedFriend[0] = indexPath.section
-        photoCollectionVC.pickedFriend[1] = indexPath.row
+        photoCollectionVC.pickedFriend[0]   = indexPath.section
+        photoCollectionVC.pickedFriend[1]   = indexPath.row
         navigationController?.pushViewController(photoCollectionVC, animated: true)
     }
     

@@ -65,9 +65,9 @@ class PhotoCell: GeminiCell {
     }
     
     private func configureLikeCountLabel () {
-        likeCountLabel.text = ""
-        likeCountLabel.numberOfLines = 0
-        likeCountLabel.alpha = 0
+        likeCountLabel.text             = ""
+        likeCountLabel.numberOfLines    = 0
+        likeCountLabel.alpha            = 0
         self.addSubview(likeCountLabel)
         
         likeCountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -88,8 +88,8 @@ class PhotoCell: GeminiCell {
             } else {
                 sender.setImage(UIImage(systemName: "heart"), for: .normal)
             }
-            self.likeCountLabel.text = self.isLiked ? "1 like": ""
-            self.likeCountLabel.alpha = self.isLiked ? 1 : 0
+            self.likeCountLabel.text    = self.isLiked ? "1 like": ""
+            self.likeCountLabel.alpha   = self.isLiked ? 1 : 0
         } 
     }
     

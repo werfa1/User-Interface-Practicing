@@ -81,24 +81,24 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
     
     private func configureSearchBar () {
         
-        groupTitleLabel = UILabel()
-        groupTitleLabel.text = title
+        groupTitleLabel             = UILabel()
+        groupTitleLabel.text        = title
         
-        groupSearchBar = UISearchBar()
-        groupSearchBar.placeholder = "Search"
-        groupSearchBar.isHidden = true
+        groupSearchBar              = UISearchBar()
+        groupSearchBar.placeholder  = "Search"
+        groupSearchBar.isHidden     = true
         
-        let screenWidth = UIScreen.main.bounds.width
+        let screenWidth             = UIScreen.main.bounds.width
         
         groupSearchBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             groupSearchBar.widthAnchor.constraint(equalToConstant: screenWidth - 50),
         ])
         
-        let hStack = UIStackView(arrangedSubviews: [groupTitleLabel, groupSearchBar])
-        hStack.axis = .horizontal
+        let hStack                  = UIStackView(arrangedSubviews: [groupTitleLabel, groupSearchBar])
+        hStack.axis                 = .horizontal
         
-        navigationItem.titleView = hStack
+        navigationItem.titleView    = hStack
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleSearchButtonTap))
     
     }
@@ -107,7 +107,7 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
     @objc
     func handleBarButtonTap (_ sender: UIBarButtonItem) {
         let globalSearchVC = GlobalSearchGroupVC()
-        globalSearchVC.globalGroupList = globalGroupListSource
+        globalSearchVC.globalGroupList  = globalGroupListSource
         globalSearchVC.subcribeDelegate = self
         navigationController?.pushViewController(globalSearchVC, animated: true)
     }
@@ -117,9 +117,9 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
     private func handleSearchButtonTap() {
         isSearching.toggle()
         UIView.animate(withDuration: 0.3) {
-            self.groupTitleLabel.isHidden = self.isSearching
-            self.groupSearchBar.isHidden = !self.isSearching
-            self.navigationItem.leftBarButtonItem = self.isSearching ? nil : self.configureGlobalGroupButton()
+            self.groupTitleLabel.isHidden           = self.isSearching
+            self.groupSearchBar.isHidden            = !self.isSearching
+            self.navigationItem.leftBarButtonItem   = self.isSearching ? nil : self.configureGlobalGroupButton()
         }
     }
     
@@ -175,8 +175,8 @@ extension GroupTableVC {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = self.deleteRow(rowAtIndexPath: indexPath)
-        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        let delete  = self.deleteRow(rowAtIndexPath: indexPath)
+        let swipe   = UISwipeActionsConfiguration(actions: [delete])
         return swipe
     }
     

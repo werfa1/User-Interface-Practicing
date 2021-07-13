@@ -64,12 +64,12 @@ class CustomPopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 class CustomInteractivrTransition: UIPercentDrivenInteractiveTransition, UIGestureRecognizerDelegate {
     
     var hasStarted: Bool = false
-    var shouldFinish: Bool = false
+    private var shouldFinish: Bool = false
     var viewController: UIViewController? {
         didSet {
-            let recognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePanGesture(recognizer:)))
-            recognizer.edges = .left
-            recognizer.delegate = self
+            let recognizer          = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePanGesture(recognizer:)))
+            recognizer.edges        = .left
+            recognizer.delegate     = self
             viewController?.view.addGestureRecognizer(recognizer)
         }
     }
@@ -82,11 +82,11 @@ class CustomInteractivrTransition: UIPercentDrivenInteractiveTransition, UIGestu
             self.hasStarted = true
             self.viewController?.navigationController?.popViewController(animated: true)
         case .changed:
-            let translation = recognizer.translation(in: recognizer.view)
-            let relativeTranslation = translation.x / (recognizer.view?.bounds.width ?? 1)
-            let progress = max(0, min(1, relativeTranslation))
+            let translation             = recognizer.translation(in: recognizer.view)
+            let relativeTranslation     = translation.x / (recognizer.view?.bounds.width ?? 1)
+            let progress                = max(0, min(1, relativeTranslation))
             
-            self.shouldFinish = progress > 0.33
+            self.shouldFinish           = progress > 0.33
             
             self.update(progress)
         case .ended:
@@ -106,13 +106,13 @@ class CustomInteractivrTransition: UIPercentDrivenInteractiveTransition, UIGestu
 extension UIView{
     func setAnchorPoint(anchorPoint: CGPoint) {
 
-        var newPoint = CGPoint(x: self.bounds.size.width * anchorPoint.x, y: self.bounds.size.height * anchorPoint.y)
-        var oldPoint = CGPoint(x: self.bounds.size.width * self.layer.anchorPoint.x, y: self.bounds.size.height * self.layer.anchorPoint.y)
+        var newPoint    = CGPoint(x: self.bounds.size.width * anchorPoint.x, y: self.bounds.size.height * anchorPoint.y)
+        var oldPoint    = CGPoint(x: self.bounds.size.width * self.layer.anchorPoint.x, y: self.bounds.size.height * self.layer.anchorPoint.y)
 
-        newPoint = newPoint.applying(self.transform)
-        oldPoint = oldPoint.applying(self.transform)
+        newPoint        = newPoint.applying(self.transform)
+        oldPoint        = oldPoint.applying(self.transform)
 
-        var position : CGPoint = self.layer.position
+        var position    = self.layer.position
 
         position.x -= oldPoint.x
         position.x += newPoint.x;
@@ -120,7 +120,7 @@ extension UIView{
         position.y -= oldPoint.y;
         position.y += newPoint.y;
 
-        self.layer.position = position;
-        self.layer.anchorPoint = anchorPoint;
+        self.layer.position     = position;
+        self.layer.anchorPoint  = anchorPoint;
     }
 }
