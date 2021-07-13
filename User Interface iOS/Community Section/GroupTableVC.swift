@@ -104,6 +104,7 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
     
     }
     
+    //Opens a VC with all the groups
     @objc
     func handleBarButtonTap (_ sender: UIBarButtonItem) {
         let globalSearchVC = GlobalSearchGroupVC()
@@ -122,6 +123,7 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
         }
     }
     
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         sortedGroupList = []
         self.tableView.reloadData()
@@ -136,9 +138,6 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
         }
         self.tableView.reloadData()
     }
-    
-    
-    
 }
 
     //MARK: - Extensions
@@ -159,19 +158,13 @@ extension GroupTableVC {
         
         return cell
     }
-  
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
     
     // Creating custom unfriend swipe
     private func deleteRow(rowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Unfollow") { [weak self] (_, _, _) in
             guard let self = self else {return}
             
-            let unsubscribedGroup = self.groupsList.remove(at: indexPath.row)
+            let unsubscribedGroup = self.sortedGroupList.remove(at: indexPath.row)
             self.globalGroupListSource.append(unsubscribedGroup)
             
             self.tableView.deleteRows(at: [indexPath], with: .fade)
