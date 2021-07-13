@@ -166,6 +166,7 @@ extension GroupTableVC {
             
             let unsubscribedGroup = self.sortedGroupList.remove(at: indexPath.row)
             self.globalGroupListSource.append(unsubscribedGroup)
+            self.groupsList.remove(at: indexPath.row)
             
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()

@@ -79,8 +79,19 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     private func deleteRow(rowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Unfriend") { [weak self] (_, _, _) in
             guard let self = self else {return}
-            self.sortedFriendList.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            for userIndex in self.sortedFriendList.indices {
+                if (self.tableView.cellForRow(at: indexPath) as! FriendCell).userName.text == self.sortedFriendList[userIndex].friendName {
+                    self.sortedFriendList.remove(at: userIndex)
+                    self.friendList.remove(at: userIndex)
+                    break
+                }
+            }
+            
+            if self.tableView.numberOfRows(inSection: indexPath.section) == 1 {
+                self.tableView.deleteSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
+            } else {
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
             self.tableView.reloadData()
         }
         action.backgroundColor = .systemIndigo
@@ -260,4 +271,3 @@ extension FriendsTableVC: UINavigationControllerDelegate {
         return interactiveTransition.hasStarted ? interactiveTransition : nil
     }
 }
-
