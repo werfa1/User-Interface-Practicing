@@ -25,7 +25,6 @@ class GlobalSearchGroupVC: UITableViewController {
         super.viewDidLoad()
         tableView.register(GlobalSearchCell.self, forCellReuseIdentifier: GlobalSearchCell.identifier)
         tableView.rowHeight = UIScreen.main.bounds.height * 0.15
-
     }
 }
     //MARK: - Extensions
@@ -43,11 +42,12 @@ extension GlobalSearchGroupVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GlobalSearchCell.identifier, for: indexPath) as! GlobalSearchCell
 
-        cell.configureCell(WithGroup: globalGroupList[indexPath.row])
+        cell.configureCell(withGroup: globalGroupList[indexPath.row])
 
         return cell
     }
     
+    /// Handles subsription to a group
     private func followGroup(rowIndexPathAt indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Follow") { [weak self] (_, _, _) in
             guard let self = self else {return}

@@ -38,7 +38,6 @@ class PhotoCell: GeminiCell {
     //MARK: - Functions
     
     private func configureImageView () {
-        //imageView.contentMode = .scaleAspectFill
         self.addSubview(imageView)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false

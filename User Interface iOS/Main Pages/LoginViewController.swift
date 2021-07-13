@@ -85,31 +85,31 @@ class LoginViewController: UIViewController {
         
         let center = view.center
         
-        let circularPath = UIBezierPath(arcCenter: center, radius: 30, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPath        = UIBezierPath(arcCenter: center, radius: 30, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         
-        trackLayer.path = circularPath.cgPath
+        trackLayer.path         = circularPath.cgPath
         
-        trackLayer.strokeColor = UIColor.lightGray.cgColor
-        trackLayer.fillColor = UIColor.white.cgColor
-        trackLayer.lineWidth = 1
+        trackLayer.strokeColor  = UIColor.lightGray.cgColor
+        trackLayer.fillColor    = UIColor.white.cgColor
+        trackLayer.lineWidth    = 1
                 
         shapeLayer.path = circularPath.cgPath
         view.layer.addSublayer(trackLayer)
         
         //Creating a loading layer
-        shapeLayer.strokeColor = UIColor.systemBlue.cgColor
-        shapeLayer.fillColor = UIColor.white.cgColor
-        shapeLayer.lineWidth = 3
-        shapeLayer.lineCap = CAShapeLayerLineCap.round
+        shapeLayer.strokeColor  = UIColor.systemBlue.cgColor
+        shapeLayer.fillColor    = UIColor.white.cgColor
+        shapeLayer.lineWidth    = 3
+        shapeLayer.lineCap      = CAShapeLayerLineCap.round
         
-        shapeLayer.strokeEnd = 0
+        shapeLayer.strokeEnd    = 0
         
         view.layer.addSublayer(shapeLayer)
         
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        let basicAnimation      = CABasicAnimation(keyPath: "strokeEnd")
         
         basicAnimation.duration = 1
-        basicAnimation.toValue = 1
+        basicAnimation.toValue  = 1
         
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
@@ -121,8 +121,8 @@ class LoginViewController: UIViewController {
     private func configureLoginSection() {
         
         //Login label
-        loginLabel.text = "Login"
-        loginLabel.textAlignment = .left
+        loginLabel.text             = "Login"
+        loginLabel.textAlignment    = .left
         loginLabel.sizeToFit()
         loginView.addSubview(loginLabel)
         
@@ -134,8 +134,8 @@ class LoginViewController: UIViewController {
         
         
         //Password label
-        passwordLabel.text = "Password"
-        passwordLabel.textAlignment = .left
+        passwordLabel.text           = "Password"
+        passwordLabel.textAlignment  = .left
         passwordLabel.sizeToFit()
         loginView.addSubview(passwordLabel)
         
@@ -146,14 +146,14 @@ class LoginViewController: UIViewController {
         ])
         
         //TextField to enter login
-        loginTextField.delegate = self
-        loginTextField.placeholder = "Enter your email/phone number"
-        loginTextField.layer.borderWidth = 1.5
-        loginTextField.textAlignment = .left
-        loginTextField.autocapitalizationType = .none
-        loginTextField.backgroundColor = .systemGray5
-        loginTextField.returnKeyType = .done
-        loginTextField.autocorrectionType = .no
+        loginTextField.delegate                     = self
+        loginTextField.placeholder                  = "Enter your email/phone number"
+        loginTextField.layer.borderWidth            = 1.5
+        loginTextField.textAlignment                = .left
+        loginTextField.autocapitalizationType       = .none
+        loginTextField.backgroundColor              = .systemGray5
+        loginTextField.returnKeyType                = .done
+        loginTextField.autocorrectionType           = .no
         loginTextField.sizeToFit()
         loginView.addSubview(loginTextField)
         
@@ -166,14 +166,14 @@ class LoginViewController: UIViewController {
         
         
         //TextField to enter password
-        passwordTextField.delegate = self
-        passwordTextField.placeholder = "Enter password"
-        passwordTextField.layer.borderWidth = 1.5
-        passwordTextField.textAlignment = .left
-        passwordTextField.autocapitalizationType = .none
-        passwordTextField.backgroundColor = .systemGray5
-        passwordTextField.returnKeyType = .done
-        passwordTextField.autocorrectionType = .no
+        passwordTextField.delegate                  = self
+        passwordTextField.placeholder               = "Enter password"
+        passwordTextField.layer.borderWidth         = 1.5
+        passwordTextField.textAlignment             = .left
+        passwordTextField.autocapitalizationType    = .none
+        passwordTextField.backgroundColor           = .systemGray5
+        passwordTextField.returnKeyType             = .done
+        passwordTextField.autocorrectionType        = .no
         passwordTextField.sizeToFit()
         loginView.addSubview(passwordTextField)
         
@@ -188,9 +188,9 @@ class LoginViewController: UIViewController {
     private func configureLoginButton() {
         //Button to log in
         loginButton.setTitle("Login", for: .normal)
-        loginButton.backgroundColor = .systemBlue
+        loginButton.backgroundColor     = .systemBlue
+        loginButton.layer.cornerRadius  = 5
         loginButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLogin)))
-        loginButton.layer.cornerRadius = 5
         loginView.addSubview(loginButton)
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
@@ -204,7 +204,7 @@ class LoginViewController: UIViewController {
     /// Configures the label which is displayed if the login info is not correct
     private func configureCorrectLoginLabel() {
         //Label whick checks whether the login info is correct
-        correctLoginLabel.alpha = 0.0
+        correctLoginLabel.alpha         = 0.0
         correctLoginLabel.textAlignment = .center
         correctLoginLabel.sizeToFit()
         loginView.addSubview(correctLoginLabel)
@@ -218,8 +218,8 @@ class LoginViewController: UIViewController {
     
     private func configureTopLabel () {
         //Top label
-        titleLabel.text = "Login to access your account"
-        titleLabel.textAlignment = .center
+        titleLabel.text                 = "Login to access your account"
+        titleLabel.textAlignment        = .center
         titleLabel.sizeToFit()
         loginView.addSubview(titleLabel)
         
@@ -232,9 +232,9 @@ class LoginViewController: UIViewController {
     
     private func configureLoginView() {
         //Main window
-        loginView.frame.size = CGSize(width: view.frame.size.width / 2, height: view.frame.size.height / 4)
-        loginView.center = view.center
-        loginView.backgroundColor = .white
+        loginView.frame.size            = CGSize(width: view.frame.size.width / 2, height: view.frame.size.height / 4)
+        loginView.center                = view.center
+        loginView.backgroundColor       = .white
         view.addSubview(loginView)
         
         loginView.translatesAutoresizingMaskIntoConstraints = false

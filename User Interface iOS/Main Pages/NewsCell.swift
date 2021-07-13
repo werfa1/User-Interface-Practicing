@@ -15,7 +15,7 @@ class NewsCell: UITableViewCell {
     
     private var newsImageView = UIImageView()
     
-    var likeButton = UIButton()
+    private var likeButton = UIButton()
         
     //Checks if the like button is tapped
     private var isLiked = false
@@ -104,9 +104,9 @@ class NewsCell: UITableViewCell {
     
     private func configureLikeCountLabel () {
         //Setting like count label
-        likeCountLabel.text = ""
-        likeCountLabel.numberOfLines = 0
-        likeCountLabel.isHidden = true
+        likeCountLabel.text             = ""
+        likeCountLabel.numberOfLines    = 0
+        likeCountLabel.isHidden         = true
         
         likeCountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -165,9 +165,9 @@ class NewsCell: UITableViewCell {
     private func configureBottomPart () {
         let emptyView = UIView()
         
-        let hStack = UIStackView(arrangedSubviews: [likeButton, likeCountLabel, commentButton, shareButton, emptyView, eyeButton, viewsCountLabel])
-        hStack.axis = .horizontal
-        hStack.distribution = .fill
+        let hStack                      = UIStackView(arrangedSubviews: [likeButton, likeCountLabel, commentButton, shareButton, emptyView, eyeButton, viewsCountLabel])
+        hStack.axis                     = .horizontal
+        hStack.distribution             = .fill
         hStack.isUserInteractionEnabled = true
                 
         contentView.addSubview(hStack)

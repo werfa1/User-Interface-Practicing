@@ -82,7 +82,6 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
     private func configureSearchBar () {
         
         groupTitleLabel = UILabel()
-        
         groupTitleLabel.text = title
         
         groupSearchBar = UISearchBar()
@@ -113,6 +112,7 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
         navigationController?.pushViewController(globalSearchVC, animated: true)
     }
     
+    //Hides or shows the search bar whether user is searrching or not
     @objc
     private func handleSearchButtonTap() {
         isSearching.toggle()
@@ -123,7 +123,7 @@ class GroupTableVC: UITableViewController, UISearchBarDelegate {
         }
     }
     
-    
+    //Refreshes the list of groups while searching
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         sortedGroupList = []
         self.tableView.reloadData()
@@ -159,7 +159,7 @@ extension GroupTableVC {
         return cell
     }
     
-    // Creating custom unfriend swipe
+    // Creating custom "unfriend" swipe
     private func deleteRow(rowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Unfollow") { [weak self] (_, _, _) in
             guard let self = self else {return}

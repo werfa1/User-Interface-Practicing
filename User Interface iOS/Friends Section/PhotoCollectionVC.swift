@@ -16,12 +16,9 @@ protocol NewProfilePicDelegate: AnyObject {
 
 class PhotoCollectionVC: UICollectionViewController {
     
-    
     //MARK: - Variables
     
     var selectedFriendProfilePic = [String]()
-    
-    //private var photoCollectionView: GeminiCollectionView?
     
     weak var newProfilePicDelegate: NewProfilePicDelegate?
     
@@ -52,7 +49,7 @@ class PhotoCollectionVC: UICollectionViewController {
     }
 }
 
-//MARK: - Extension
+//MARK: - Extensions
 
 extension PhotoCollectionVC {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -105,8 +102,6 @@ extension PhotoCollectionVC: UICollectionViewDelegateFlowLayout {
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }
-
-
 
 extension PhotoCollectionVC: UINavigationControllerDelegate {
     func navigationController(

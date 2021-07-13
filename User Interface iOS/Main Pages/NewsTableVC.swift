@@ -18,12 +18,13 @@ class NewsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.identifier)
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.tableView.rowHeight = UIScreen.main.bounds.height * 0.5
+        self.tableView.dataSource   = self
+        self.tableView.delegate     = self
+        self.tableView.rowHeight    = UIScreen.main.bounds.height * 0.5
     }
 }
 
+    //MARK: - Extensions
 extension NewsTableVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -53,6 +54,5 @@ extension NewsTableVC {
         let emptyHeader = UIView()
         emptyHeader.backgroundColor = .clear
         return emptyHeader
-    }
-    
+    } 
 }

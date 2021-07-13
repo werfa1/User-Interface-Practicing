@@ -11,11 +11,11 @@ class PersonalPageVC: UIViewController {
 
     //MARK: - Variables
     
-    var profilePicImageView = UIImageView()
-    var personalNameLabel = UILabel()
-    var statusLabel = UILabel()
+    private var profilePicImageView = UIImageView()
+    private var personalNameLabel   = UILabel()
+    private var statusLabel         = UILabel()
     
-    //MARL: - Lifecycle
+    //MARK: - Lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -82,9 +82,9 @@ class PersonalPageVC: UIViewController {
     }
     
     private func configureStatusLabel () {
-        statusLabel.text = "Nice cock, awesome balls"
-        statusLabel.numberOfLines = 0
-        statusLabel.adjustsFontSizeToFitWidth = true
+        statusLabel.text                        = "Nice cock, awesome balls"
+        statusLabel.numberOfLines               = 0
+        statusLabel.adjustsFontSizeToFitWidth   = true
         view.addSubview(statusLabel)
         
         statusLabel.translatesAutoresizingMaskIntoConstraints = false

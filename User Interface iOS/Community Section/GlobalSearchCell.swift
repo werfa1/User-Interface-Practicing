@@ -9,6 +9,8 @@ import UIKit
 
 class GlobalSearchCell: UITableViewCell {
     
+    //MARK: - Variables
+    
     static let identifier = "GlobalSearchCell"
 
     var globalGroupName = UILabel()
@@ -31,7 +33,7 @@ class GlobalSearchCell: UITableViewCell {
     
     //MARK: - Functions
     
-    func configureCell(WithGroup group: Group) {
+    func configureCell(withGroup group: Group) {
         self.globalGroupName.text = group.groupName
         self.globalGroupProfilePic.image = UIImage(named: group.groupProfilePic)
     }

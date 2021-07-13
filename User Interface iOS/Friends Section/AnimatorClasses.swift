@@ -8,6 +8,7 @@
 import UIKit
 
 class CustomPushAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 1
     }
@@ -31,7 +32,6 @@ class CustomPushAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         }
     }
 }
-
 
 class CustomPopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -71,20 +71,12 @@ class CustomInteractivrTransition: UIPercentDrivenInteractiveTransition, UIGestu
             recognizer.edges = .left
             recognizer.delegate = self
             viewController?.view.addGestureRecognizer(recognizer)
-            
-//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-//            viewController?.view.addGestureRecognizer(tapGesture)
         }
     }
     
-    @objc
-    private func handleTap(_ sender: UITapGestureRecognizer) {
-        print("tapped")
-    }
-    
+    //Dismissing VC via UIScreenEdgePanGestureRecognizer
     @objc
     private func handleEdgePanGesture (recognizer: UIScreenEdgePanGestureRecognizer) {
-        print("left edge trigger")
         switch recognizer.state {
         case .began:
             self.hasStarted = true

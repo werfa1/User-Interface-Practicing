@@ -36,8 +36,8 @@ class GroupCell: UITableViewCell {
     }
     
     private func configureImageView() {
-        groupProfilePic.layer.cornerRadius = 10
-        groupProfilePic.clipsToBounds      = true
+        groupProfilePic.layer.cornerRadius       = 10
+        groupProfilePic.clipsToBounds            = true
         groupProfilePic.isUserInteractionEnabled = true
         groupProfilePic.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         contentView.addSubview(groupProfilePic)
@@ -65,6 +65,7 @@ class GroupCell: UITableViewCell {
         ])
     }
     
+    //Bouncing animation for profile pic
     @objc
     private func handleTap (_ sender: UITapGestureRecognizer) {
         

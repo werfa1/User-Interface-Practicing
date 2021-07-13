@@ -65,6 +65,7 @@ class FriendCell: UITableViewCell {
         ])
     }
     
+    //Bouncing animation for friend's profile pic
     @objc
     private func handleTap (_ sender: UITapGestureRecognizer) {
         

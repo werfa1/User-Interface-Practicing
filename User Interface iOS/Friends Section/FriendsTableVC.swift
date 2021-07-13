@@ -22,15 +22,15 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     
     //MARK: - Variables
     
-    let interactiveTransition = CustomInteractivrTransition()
+    private let interactiveTransition = CustomInteractivrTransition()
     
     /// Checks if the user is started searching
-    var isSearching = false
+    private var isSearching = false
     
     /// Checks if the view appears for the first time in the app lifetime
     private var isAppearingFirstTime = true
     
-    var allPhotos = ["random-dude", "random-dude-2", "emma", "random-woman-2", "jason", "lilly", "jack"]
+    private var allPhotos = ["random-dude", "random-dude-2", "emma", "random-woman-2", "jason", "lilly", "jack"]
     
     private var firstLettersForHeaders = [String]()
     
@@ -43,7 +43,7 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
                       Friend(friendName: "Lilly Collins", friendProfilePicture: "lilly"),
                       Friend(friendName: "Jack Black", friendProfilePicture: "jack")]
     
-    private var sortedFriendList: [Friend]!
+    private var sortedFriendList = [Friend]()
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -93,34 +93,7 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
         return swipe
     }
     
-    //TableView assistant functions
-    private func returnNumberOfSections() -> Int {
-        
-        //Getting first letters of each name in frined list
-        firstLettersForHeaders = []
-        sortedFriendList.forEach { [weak self] item in
-            guard let self = self else { return }
-            guard let letter = item.friendName.first else { return }
-            let firstLetter = String(letter)
-            if !self.firstLettersForHeaders.contains(firstLetter) {
-                self.firstLettersForHeaders.append(firstLetter)
-            }
-        }
-        firstLettersForHeaders = firstLettersForHeaders.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
-        return self.firstLettersForHeaders.count
-    }
-    
-    private func returnNumberOfRowsInSection (forSection section: Int) -> Int {
-        var counter = 0
-        for friend in sortedFriendList {
-            if friend.friendName.firstLetter() == firstLettersForHeaders[section] {
-                counter += 1
-            }
-        }
-        return counter
-    }
-    
-    //Configuring UI
+    //MARK: - Configuring UI
     private func configureSearchBar () {
         
         titleLabel = UILabel()
@@ -167,6 +140,36 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
         }
         self.tableView.reloadData()
     }
+    
+    //MARK: - TableView assistant functions
+    
+    private func returnNumberOfSections() -> Int {
+        
+        //Getting first letters of each name in friend list
+        firstLettersForHeaders = []
+        sortedFriendList.forEach { [weak self] item in
+            guard let self = self else { return }
+            guard let letter = item.friendName.first else { return }
+            let firstLetter = String(letter)
+            if !self.firstLettersForHeaders.contains(firstLetter) {
+                self.firstLettersForHeaders.append(firstLetter)
+            }
+        }
+        
+        //Sorting letters in alphabetical order
+        firstLettersForHeaders = firstLettersForHeaders.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
+        return self.firstLettersForHeaders.count
+    }
+    
+    private func returnNumberOfRowsInSection (forSection section: Int) -> Int {
+        var counter = 0
+        for friend in sortedFriendList {
+            if friend.friendName.firstLetter() == firstLettersForHeaders[section] {
+                counter += 1
+            }
+        }
+        return counter
+    }
 }
 
 //MARK: - Extensions
@@ -204,10 +207,6 @@ extension FriendsTableVC {
         photoCollectionVC.pickedFriend[0] = indexPath.section
         photoCollectionVC.pickedFriend[1] = indexPath.row
         navigationController?.pushViewController(photoCollectionVC, animated: true)
-        
-//        let testVC = UIViewController()
-//        testVC.view.backgroundColor = .orange
-//        navigationController?.pushViewController(testVC, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
