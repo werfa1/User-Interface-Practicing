@@ -61,7 +61,7 @@ class CustomPopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 }
 
 /// Class for UIScreenEdgePanGestureRecognizer
-class CustomInteractivrTransition: UIPercentDrivenInteractiveTransition, UIGestureRecognizerDelegate {
+class CustomInteractiveTransition: UIPercentDrivenInteractiveTransition, UIGestureRecognizerDelegate {
     
     var hasStarted: Bool = false
     private var shouldFinish: Bool = false

@@ -8,11 +8,6 @@
 import UIKit
 import ViewAnimator
 
-//MARK: - Delegate
-protocol FriendSelectionDelegate {
-    func didSelectFriend (profilePic: String)
-}
-
 class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     
     // MARK: - UI Components -
@@ -22,7 +17,7 @@ class FriendsTableVC: UITableViewController, UISearchBarDelegate {
     
     //MARK: - Variables
     
-    private let interactiveTransition = CustomInteractivrTransition()
+    private let interactiveTransition = CustomInteractiveTransition()
     
     /// Checks if the user is started searching
     private var isSearching             = false
